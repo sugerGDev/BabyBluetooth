@@ -1,4 +1,4 @@
-    //
+//
 //  ViewController.m
 //  BabyBluetoothAppDemo
 //
@@ -17,6 +17,7 @@
 @interface ViewController (){
     NSMutableArray *peripheralDataArray;
     BabyBluetooth *baby;
+    
 }
 
 @end
@@ -28,28 +29,37 @@
     
     [SVProgressHUD showInfoWithStatus:@"准备打开设备"];
     NSLog(@"viewDidLoad");
+    
     peripheralDataArray = [[NSMutableArray alloc]init];
     
     //初始化BabyBluetooth 蓝牙库
     baby = [BabyBluetooth shareBabyBluetooth];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(doWillEnterForegroundNotification:) name:UIApplicationWillEnterForegroundNotification object:nil];
     //设置蓝牙委托
     [self babyDelegate];
- 
+    
+    // 开始扫描
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+          [self _startScan];
+    });
+    
+    //右导航按钮
+    UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [navRightBtn setFrame:CGRectMake(0, 0, 30, 30)];
+    [navRightBtn setTitle:@"🔍" forState:UIControlStateNormal];
+    [navRightBtn.titleLabel setTextColor:[UIColor blackColor]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navRightBtn];
+    [navRightBtn addTarget:self action:@selector(navRightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 
 
--(void)viewDidAppear:(BOOL)animated{
-    NSLog(@"viewDidAppear");
-    //停止之前的连接
-    [baby cancelAllPeripheralsConnection];
-    //设置委托后直接可以使用，无需等待CBCentralManagerStatePoweredOn状态。
-    baby.scanForPeripherals().begin();
-    //baby.scanForPeripherals().begin().stop(10);
-}
 
 -(void)viewWillDisappear:(BOOL)animated{
     NSLog(@"viewWillDisappear");
+  
 }
 
 #pragma mark -蓝牙配置和操作
@@ -70,7 +80,7 @@
         [weakSelf insertTableView:peripheral advertisementData:advertisementData RSSI:RSSI];
     }];
     
-   
+    
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristics:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
         NSLog(@"===service name:%@",service.UUID);
@@ -94,15 +104,15 @@
         NSLog(@"Descriptor name:%@ value is:%@",descriptor.characteristic.UUID, descriptor.value);
     }];
     
-
+    
     //设置查找设备的过滤器
     [baby setFilterOnDiscoverPeripherals:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
         
         //最常用的场景是查找某一个前缀开头的设备
-//        if ([peripheralName hasPrefix:@"Pxxxx"] ) {
-//            return YES;
-//        }
-//        return NO;
+        //        if ([peripheralName hasPrefix:@"Pxxxx"] ) {
+        //            return YES;
+        //        }
+        //        return NO;
         
         //设置查找规则是名称大于0 ， the search rule is peripheral.name length > 0
         if (peripheralName.length >0) {
@@ -110,27 +120,27 @@
         }
         return NO;
     }];
-
+    
     
     [baby setBlockOnCancelAllPeripheralsConnectionBlock:^(CBCentralManager *centralManager) {
         NSLog(@"setBlockOnCancelAllPeripheralsConnectionBlock");
     }];
-       
+    
     [baby setBlockOnCancelScanBlock:^(CBCentralManager *centralManager) {
         NSLog(@"setBlockOnCancelScanBlock");
     }];
     
     
     /*设置babyOptions
-        
-        参数分别使用在下面这几个地方，若不使用参数则传nil
-        - [centralManager scanForPeripheralsWithServices:scanForPeripheralsWithServices options:scanForPeripheralsWithOptions];
-        - [centralManager connectPeripheral:peripheral options:connectPeripheralWithOptions];
-        - [peripheral discoverServices:discoverWithServices];
-        - [peripheral discoverCharacteristics:discoverWithCharacteristics forService:service];
-        
-        该方法支持channel版本:
-            [baby setBabyOptionsAtChannel:<#(NSString *)#> scanForPeripheralsWithOptions:<#(NSDictionary *)#> connectPeripheralWithOptions:<#(NSDictionary *)#> scanForPeripheralsWithServices:<#(NSArray *)#> discoverWithServices:<#(NSArray *)#> discoverWithCharacteristics:<#(NSArray *)#>]
+     
+     参数分别使用在下面这几个地方，若不使用参数则传nil
+     - [centralManager scanForPeripheralsWithServices:scanForPeripheralsWithServices options:scanForPeripheralsWithOptions];
+     - [centralManager connectPeripheral:peripheral options:connectPeripheralWithOptions];
+     - [peripheral discoverServices:discoverWithServices];
+     - [peripheral discoverCharacteristics:discoverWithCharacteristics forService:service];
+     
+     该方法支持channel版本:
+     [baby setBabyOptionsAtChannel:<#(NSString *)#> scanForPeripheralsWithOptions:<#(NSDictionary *)#> connectPeripheralWithOptions:<#(NSDictionary *)#> scanForPeripheralsWithServices:<#(NSArray *)#> discoverWithServices:<#(NSArray *)#> discoverWithCharacteristics:<#(NSArray *)#>]
      */
     
     //示例:
@@ -139,7 +149,39 @@
     //连接设备->
     [baby setBabyOptionsWithScanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:nil scanForPeripheralsWithServices:nil discoverWithServices:nil discoverWithCharacteristics:nil];
     
+    
+}
 
+
+#pragma mark - Private
+- (void)doWillEnterForegroundNotification:(NSNotification *)notification {
+    //    BabyLog(@"self.navigationController.visibleViewController is %@",self.navigationController.visibleViewController);
+    //判断搜索view是否是本view
+    if ([ NSStringFromClass(self.navigationController.visibleViewController.class) isEqualToString:NSStringFromClass(self.class)]) {
+        [self _startScan];
+    }
+}
+
+- (void)_startScan {
+    BabyLog(@">>> start scan");
+    if (baby.centralManager.state == CBCentralManagerStatePoweredOn) {
+        [baby cancelAllPeripheralsConnection];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            //设置委托后直接可以使用，无需等待CBCentralManagerStatePoweredOn状态。
+            baby.scanForPeripherals().begin();
+        });
+    }else {
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"设备异常，状态码为；（%zd）",baby.centralManager.state]];
+    }
+    
+}
+
+- (void)navRightBtnClick:(id)aSender {
+    
+    [baby cancelAllPeripheralsConnection];
+    [self _startScan];
 }
 
 #pragma mark -UIViewController 方法
@@ -165,7 +207,7 @@
 #pragma mark -table委托 table delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-     return peripheralDataArray.count;
+    return peripheralDataArray.count;
 }
 
 

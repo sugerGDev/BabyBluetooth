@@ -8,12 +8,21 @@
 
 #import "PeripheralViewController.h"
 
+#define kServieUUID @"FEEA"     //服务的uuid FEEA
+#define kCharacteristicsUUID @"2AA1"  //特征值的uuid
+
 #define width [UIScreen mainScreen].bounds.size.width
 #define height [UIScreen mainScreen].bounds.size.height
 #define channelOnPeropheralView @"peripheralView"
 
 @interface PeripheralViewController ()
+ // 保存指定服务和特征
 
+@property(nonatomic, weak) CBService *tSevice;
+@property (nonatomic,weak) CBCharacteristic *tCharacteristic;
+// 需要显示内容
+@property(nonatomic, strong) NSMutableString *content;
+@property(nonatomic, assign) BOOL isLazyShowContent;
 @end
 
 @implementation PeripheralViewController{
@@ -38,7 +47,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navRightBtn];
     [navRightBtn addTarget:self action:@selector(navRightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerTask) userInfo:nil repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerTask) userInfo:nil repeats:YES];
 }
 
 -(void)timerTask{
@@ -165,6 +174,12 @@
 -(void)insertSectionToTableView:(CBService *)service{
     NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
     PeripheralInfo *info = [[PeripheralInfo alloc]init];
+    
+    //TODO:保存指定服务
+    if ([service.UUID.UUIDString isEqualToString:kServieUUID]) {
+        self.tSevice = service;
+    }
+    
     [info setServiceUUID:service.UUID];
     [self.services addObject:info];
     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:self.services.count-1];
@@ -184,6 +199,14 @@
         PeripheralInfo *info =[self.services objectAtIndex:sect];
         for (int row=0;row<service.characteristics.count;row++) {
             CBCharacteristic *c = service.characteristics[row];
+            
+            //保存指定的特征
+            if ([service.UUID.UUIDString isEqualToString:kServieUUID]) {
+                if ([c.UUID.UUIDString isEqualToString:kCharacteristicsUUID]) {
+                    self.tCharacteristic = c;
+                }
+            }
+            
             [info.characteristics addObject:c];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:sect];
             [indexPaths addObject:indexPath];
@@ -195,7 +218,12 @@
         
     }
 
-    
+    //TODO: 服务和特征存在的情况订阅
+    if (self.tSevice && self.tCharacteristic) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+               [self _notifyAction];
+        });
+    }
 }
 
 
@@ -251,6 +279,58 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - 订阅 Private
+- (void)_notifyAction {
+    
+    [SVProgressHUD showInfoWithStatus:@"开始订阅"];
+    
+    if(self.currPeripheral.state != CBPeripheralStateConnected) {
+        [SVProgressHUD showErrorWithStatus:@"peripheral已经断开连接，请重新连接"];
+        return;
+    }
+    
+    if (self.tCharacteristic.properties & CBCharacteristicPropertyNotify ||  self.tCharacteristic.properties & CBCharacteristicPropertyIndicate) {
+        
+        if(self.tCharacteristic.isNotifying) {
+            //如果已经订阅了，则不做处理
+//            [baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
+            return;
+       
+        }else{
+        
+            __weak __typeof(self)weakSelf = self;
+            [self.currPeripheral setNotifyValue:YES forCharacteristic:self.tCharacteristic];
+           [baby notify:self.currPeripheral
+          characteristic:self.tCharacteristic
+                   block:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
+                       NSLog(@"notify block");
+                       if (!weakSelf.content) {
+                           weakSelf.content = [[NSMutableString alloc]initWithCapacity:10];
+                       }
 
+                       [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf];
+                       
+                       NSString *valueStr = [[NSString alloc] initWithData:characteristics.value encoding:NSUTF8StringEncoding];
+                       valueStr = [valueStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                       [weakSelf.content appendFormat:@"%@",valueStr];
+                       
+                       [weakSelf performSelector:@selector(_showScanResult:) withObject:weakSelf.content afterDelay:1.f];
+
+                   }];
+        }
+    }
+    else{
+        [SVProgressHUD showErrorWithStatus:@"这个characteristic没有nofity的权限"];
+        return;
+    }
+}
+
+
+- (void)_showScanResult:(NSString *)content {
+    
+    [SVProgressHUD showInfoWithStatus:content];
+    self.content = nil;
+    self.isLazyShowContent = NO;
+}
  
 @end

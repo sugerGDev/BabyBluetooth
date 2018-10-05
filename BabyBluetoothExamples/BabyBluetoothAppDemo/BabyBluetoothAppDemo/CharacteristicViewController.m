@@ -114,7 +114,12 @@
 }
 //插入读取的值
 -(void)insertReadValues:(CBCharacteristic *)characteristics{
-    [self->readValueArray addObject:[NSString stringWithFormat:@"%@",characteristics.value]];
+    
+    NSString *valueStr = [[NSString alloc] initWithData:characteristics.value encoding:NSUTF8StringEncoding];
+    valueStr = [valueStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    
+    [self->readValueArray addObject:[NSString stringWithFormat:@"%@",valueStr]];
     NSMutableArray *indexPaths = [[NSMutableArray alloc]init];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self->readValueArray.count-1 inSection:0];
     NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:self->readValueArray.count-1 inSection:0];
