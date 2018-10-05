@@ -12,7 +12,7 @@
 //  
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 
 # pragma mark - baby 行为定义
 
@@ -68,8 +68,12 @@
 //Baby log
 #define BabyLog(fmt, ...) if(KBABY_IS_SHOW_LOG) { NSLog(fmt,##__VA_ARGS__); }
 
-
-
+// 记录上一次链接 peripheral 对象 id
+UIKIT_EXTERN NSString *const kLastConnectionPeripheralUUID;
+// 指定服务对象 id
+UIKIT_EXTERN NSString *const kTargetServiceUUID;
+// 指定特征对象 id
+UIKIT_EXTERN NSString *const kTargetCharacteristicUUID;
 
 
 @interface BabyDefine : NSObject

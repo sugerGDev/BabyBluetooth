@@ -7,9 +7,8 @@
 //
 
 #import "PeripheralViewController.h"
+#import "BabyDefine.h"
 
-#define kServieUUID @"FEEA"     //服务的uuid FEEA
-#define kCharacteristicsUUID @"2AA1"  //特征值的uuid
 
 #define width [UIScreen mainScreen].bounds.size.width
 #define height [UIScreen mainScreen].bounds.size.height
@@ -27,6 +26,10 @@
 
 @implementation PeripheralViewController{
 
+}
+-(void)dealloc {
+    BabyLog(@">>> PeripheralViewController dealloc ");
+    [baby cancelAllPeripheralsConnection];
 }
 
 - (void)viewDidLoad {
@@ -80,6 +83,8 @@
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral) {
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
+        //TODO: 保存链接成功的蓝牙设备
+        [NSUserDefaults.standardUserDefaults setObject:weakSelf.currPeripheral.identifier.UUIDString forKey:kLastConnectionPeripheralUUID];
     }];
     
     //设置设备连接失败的委托
@@ -176,7 +181,7 @@
     PeripheralInfo *info = [[PeripheralInfo alloc]init];
     
     //TODO:保存指定服务
-    if ([service.UUID.UUIDString isEqualToString:kServieUUID]) {
+    if ([service.UUID.UUIDString isEqualToString:kTargetServiceUUID]) {
         self.tSevice = service;
     }
     
@@ -201,8 +206,8 @@
             CBCharacteristic *c = service.characteristics[row];
             
             //保存指定的特征
-            if ([service.UUID.UUIDString isEqualToString:kServieUUID]) {
-                if ([c.UUID.UUIDString isEqualToString:kCharacteristicsUUID]) {
+            if ([service.UUID.UUIDString isEqualToString:kTargetServiceUUID]) {
+                if ([c.UUID.UUIDString isEqualToString:kTargetCharacteristicUUID]) {
                     self.tCharacteristic = c;
                 }
             }
@@ -314,7 +319,7 @@
                        valueStr = [valueStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                        [weakSelf.content appendFormat:@"%@",valueStr];
                        
-                       [weakSelf performSelector:@selector(_showScanResult:) withObject:weakSelf.content afterDelay:1.f];
+                       [weakSelf performSelector:@selector(_showScanResult:) withObject:weakSelf.content afterDelay:.5f];
 
                    }];
         }

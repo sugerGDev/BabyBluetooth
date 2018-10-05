@@ -9,11 +9,6 @@
 #import "ViewController.h"
 #import "SVProgressHUD.h"
 
-
-//screen width and height
-#define width [UIScreen mainScreen].bounds.size.width
-#define height [UIScreen mainScreen].bounds.size.height
-
 @interface ViewController (){
     NSMutableArray *peripheralDataArray;
     BabyBluetooth *baby;
@@ -173,7 +168,7 @@
             baby.scanForPeripherals().begin();
         });
     }else {
-        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"设备异常，状态码为；（%zd）",baby.centralManager.state]];
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"设备异常，状态码为；（%ld）",(long)baby.centralManager.state]];
     }
     
 }
@@ -201,6 +196,19 @@
         [peripheralDataArray addObject:item];
         
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+        //TODO: 自动链接之前的设备
+        NSString *lastConnectionPeripheralUUID = [NSUserDefaults.standardUserDefaults objectForKey:kLastConnectionPeripheralUUID];
+        if (
+            // 当前页面
+            [NSStringFromClass(self.navigationController.visibleViewController.class) isEqualToString:NSStringFromClass(self.class)]&&
+            // 之前的链接uuid 一致
+            [peripheral.identifier.UUIDString isEqualToString:lastConnectionPeripheralUUID]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                       [self _navPeripheralViewControllerWithPeripheral:peripheral];
+            });
+        }
+    
     }
 }
 
@@ -246,19 +254,26 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //停止扫描
-    [baby cancelScan];
+
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    PeripheralViewController *vc = [[PeripheralViewController alloc]init];
+    
+    
     NSDictionary *item = [peripheralDataArray objectAtIndex:indexPath.row];
     CBPeripheral *peripheral = [item objectForKey:@"peripheral"];
-    vc.currPeripheral = peripheral;
-    vc->baby = self->baby;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self _navPeripheralViewControllerWithPeripheral:peripheral];
     
 }
 
+- (void)_navPeripheralViewControllerWithPeripheral:(CBPeripheral *)peripheral {
+    //停止扫描
+    [baby cancelScan];
+    
+    PeripheralViewController *vc = [[PeripheralViewController alloc]init];
+    vc.currPeripheral = peripheral;
+    vc->baby = self->baby;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end
