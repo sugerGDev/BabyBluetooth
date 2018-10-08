@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68B4DAC3F4CB7B4F9CD47A5A /* QueryRecordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D995C4DCFB638EA70E41 /* QueryRecordInfo.m */; };
+		68B4DEFEE3D8BFCEC1F1EEBD /* QueryDatabaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D1822BCF23E2D093FFA5 /* QueryDatabaseMgr.m */; };
 		79CD9BD21CDB7395009DAD1C /* BabyDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CD9BD11CDB7395009DAD1C /* BabyDefine.m */; };
+		9B7E45D1216B3105002BDB67 /* QueryResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7E45CF216B3105002BDB67 /* QueryResultDetailViewController.m */; };
+		9B7E45D2216B3105002BDB67 /* QueryResultDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7E45D0216B3105002BDB67 /* QueryResultDetailViewController.xib */; };
+		9B7E45D6216B521F002BDB67 /* QueryHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7E45D4216B521F002BDB67 /* QueryHistoryViewController.m */; };
+		9B7E45D7216B521F002BDB67 /* QueryHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7E45D5216B521F002BDB67 /* QueryHistoryViewController.xib */; };
+		9BBF97F5216AF8EF00BD774C /* database.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BBF97F4216AF8EF00BD774C /* database.plist */; };
+		9BD83551E976F1A585FEB45D /* libPods-BabyBluetoothAppDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 821E2D88D6E4142A0F7EA7B3 /* libPods-BabyBluetoothAppDemo.a */; };
 		E13AD4D51BB78EF900D61C84 /* BabyOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = E13AD4D41BB78EF900D61C84 /* BabyOptions.m */; };
 		E16F24A81C20484E00A5C274 /* BabyPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E16F24A71C20484E00A5C274 /* BabyPeripheralManager.m */; };
 		E16F24AB1C2123B800A5C274 /* BabyCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E16F24AA1C2123B800A5C274 /* BabyCentralManager.m */; };
@@ -31,8 +39,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		494425C45D11A4B25DB3185B /* Pods-BabyBluetoothAppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBluetoothAppDemo.debug.xcconfig"; path = "Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		68B4D1822BCF23E2D093FFA5 /* QueryDatabaseMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryDatabaseMgr.m; sourceTree = "<group>"; };
+		68B4D35D4B368A600AC9C564 /* QueryDatabaseMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryDatabaseMgr.h; sourceTree = "<group>"; };
+		68B4D967E9A17F0DC7ED3817 /* QueryRecordInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryRecordInfo.h; sourceTree = "<group>"; };
+		68B4D995C4DCFB638EA70E41 /* QueryRecordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryRecordInfo.m; sourceTree = "<group>"; };
 		79CD9BD01CDB7395009DAD1C /* BabyDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyDefine.h; sourceTree = "<group>"; };
 		79CD9BD11CDB7395009DAD1C /* BabyDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyDefine.m; sourceTree = "<group>"; };
+		821E2D88D6E4142A0F7EA7B3 /* libPods-BabyBluetoothAppDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BabyBluetoothAppDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ACFDE8B03C68C39D17C5E91 /* Pods-BabyBluetoothAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBluetoothAppDemo.release.xcconfig"; path = "Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9B7E45CE216B3105002BDB67 /* QueryResultDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryResultDetailViewController.h; sourceTree = "<group>"; };
+		9B7E45CF216B3105002BDB67 /* QueryResultDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryResultDetailViewController.m; sourceTree = "<group>"; };
+		9B7E45D0216B3105002BDB67 /* QueryResultDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryResultDetailViewController.xib; sourceTree = "<group>"; };
+		9B7E45D3216B521F002BDB67 /* QueryHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryHistoryViewController.h; sourceTree = "<group>"; };
+		9B7E45D4216B521F002BDB67 /* QueryHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueryHistoryViewController.m; sourceTree = "<group>"; };
+		9B7E45D5216B521F002BDB67 /* QueryHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryHistoryViewController.xib; sourceTree = "<group>"; };
+		9BBF97F4216AF8EF00BD774C /* database.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = database.plist; sourceTree = "<group>"; };
 		E13AD4D31BB78EF900D61C84 /* BabyOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyOptions.h; sourceTree = "<group>"; };
 		E13AD4D41BB78EF900D61C84 /* BabyOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyOptions.m; sourceTree = "<group>"; };
 		E16F24A61C20484E00A5C274 /* BabyPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyPeripheralManager.h; sourceTree = "<group>"; };
@@ -77,18 +99,80 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD83551E976F1A585FEB45D /* libPods-BabyBluetoothAppDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C3014465A0BE544B5F82A44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				494425C45D11A4B25DB3185B /* Pods-BabyBluetoothAppDemo.debug.xcconfig */,
+				9ACFDE8B03C68C39D17C5E91 /* Pods-BabyBluetoothAppDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		68B4D613F7D69CFFABC95E5A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9B7E45CE216B3105002BDB67 /* QueryResultDetailViewController.h */,
+				9B7E45CF216B3105002BDB67 /* QueryResultDetailViewController.m */,
+				9B7E45D0216B3105002BDB67 /* QueryResultDetailViewController.xib */,
+				9B7E45D3216B521F002BDB67 /* QueryHistoryViewController.h */,
+				9B7E45D4216B521F002BDB67 /* QueryHistoryViewController.m */,
+				9B7E45D5216B521F002BDB67 /* QueryHistoryViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		68B4D9D900EFAACFB260B4A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				68B4D995C4DCFB638EA70E41 /* QueryRecordInfo.m */,
+				68B4D967E9A17F0DC7ED3817 /* QueryRecordInfo.h */,
+				68B4D1822BCF23E2D093FFA5 /* QueryDatabaseMgr.m */,
+				68B4D35D4B368A600AC9C564 /* QueryDatabaseMgr.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		68B4DDEF5F079EE43DE8759C /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9BBF97F4216AF8EF00BD774C /* database.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		68B4DF672D7542370CBB91BA /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				68B4D9D900EFAACFB260B4A5 /* Model */,
+				68B4DDEF5F079EE43DE8759C /* Resource */,
+				68B4D613F7D69CFFABC95E5A /* ViewController */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		DB02BA044ABB07DA682E63F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				821E2D88D6E4142A0F7EA7B3 /* libPods-BabyBluetoothAppDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E1807E641B6CA29100E99C63 = {
 			isa = PBXGroup;
 			children = (
 				E1807EA91B6CA53A00E99C63 /* Framework */,
 				E1807E6F1B6CA29100E99C63 /* BabyBluetoothDemo */,
 				E1807E6E1B6CA29100E99C63 /* Products */,
+				0C3014465A0BE544B5F82A44 /* Pods */,
+				DB02BA044ABB07DA682E63F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +200,7 @@
 				E1807E7D1B6CA29100E99C63 /* Images.xcassets */,
 				E1807E7F1B6CA29100E99C63 /* LaunchScreen.xib */,
 				E1807E701B6CA29100E99C63 /* Supporting Files */,
+				68B4DF672D7542370CBB91BA /* Record */,
 			);
 			name = BabyBluetoothDemo;
 			path = BabyBluetoothAppDemo;
@@ -193,6 +278,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1807E901B6CA29100E99C63 /* Build configuration list for PBXNativeTarget "BabyBluetoothAppDemo" */;
 			buildPhases = (
+				921DFDA55CE5132EF1AF27AE /* [CP] Check Pods Manifest.lock */,
 				E1807E691B6CA29100E99C63 /* Sources */,
 				E1807E6A1B6CA29100E99C63 /* Frameworks */,
 				E1807E6B1B6CA29100E99C63 /* Resources */,
@@ -250,13 +336,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1807E7C1B6CA29100E99C63 /* Main.storyboard in Resources */,
+				9B7E45D2216B3105002BDB67 /* QueryResultDetailViewController.xib in Resources */,
 				E1807E811B6CA29100E99C63 /* LaunchScreen.xib in Resources */,
+				9B7E45D7216B521F002BDB67 /* QueryHistoryViewController.xib in Resources */,
 				E1807E7E1B6CA29100E99C63 /* Images.xcassets in Resources */,
+				9BBF97F5216AF8EF00BD774C /* database.plist in Resources */,
 				F05F7BAE1B7372300051C68A /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		921DFDA55CE5132EF1AF27AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BabyBluetoothAppDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E1807E691B6CA29100E99C63 /* Sources */ = {
@@ -272,6 +382,7 @@
 				F05F7BAF1B7372300051C68A /* SVProgressHUD.m in Sources */,
 				E1807E761B6CA29100E99C63 /* AppDelegate.m in Sources */,
 				E16F24A81C20484E00A5C274 /* BabyPeripheralManager.m in Sources */,
+				9B7E45D1216B3105002BDB67 /* QueryResultDetailViewController.m in Sources */,
 				E1807E731B6CA29100E99C63 /* main.m in Sources */,
 				F05F7BB21B7442B50051C68A /* CharacteristicViewController.m in Sources */,
 				E13AD4D51BB78EF900D61C84 /* BabyOptions.m in Sources */,
@@ -280,6 +391,9 @@
 				F0644E511BA7B1C600AA0F9F /* BabyRhythm.m in Sources */,
 				E1DEF5191B98857B0005C9F2 /* BabyToy.m in Sources */,
 				F05F7BAD1B7372300051C68A /* SVIndefiniteAnimatedView.m in Sources */,
+				68B4DAC3F4CB7B4F9CD47A5A /* QueryRecordInfo.m in Sources */,
+				68B4DEFEE3D8BFCEC1F1EEBD /* QueryDatabaseMgr.m in Sources */,
+				9B7E45D6216B521F002BDB67 /* QueryHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,33 +502,37 @@
 		};
 		E1807E911B6CA29100E99C63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 494425C45D11A4B25DB3185B /* Pods-BabyBluetoothAppDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2VEA43BV3V;
 				INFOPLIST_FILE = BabyBluetoothAppDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fj.babyBluetooth;
 				PRODUCT_NAME = BabyBluetoothAppDemo;
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../Pods\"/** \"${PROJECT_DIR}/../Pods\"/**";
 			};
 			name = Debug;
 		};
 		E1807E921B6CA29100E99C63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9ACFDE8B03C68C39D17C5E91 /* Pods-BabyBluetoothAppDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2VEA43BV3V;
 				INFOPLIST_FILE = BabyBluetoothAppDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fj.babyBluetooth;
 				PRODUCT_NAME = BabyBluetoothAppDemo;
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../Pods\"/** \"${PROJECT_DIR}/../Pods\"/**";
 			};
 			name = Release;
 		};

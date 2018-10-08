@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>STXDP0101020120</key>
+	<dict>
+		<key>qId</key>
+		<string>STXDP0101020120</string>
+		<key>batchId</key>
+		<string>STXDP0101020320191008</string>
+		<key>date</key>
+		<string>2019年10月8日</string>
+		<key>merchant</key>
+		<string>素天下</string>
+		<key>productName</key>
+		<string>百叶豆腐2.5公斤</string>
+	</dict>
+	<key>STXDP0101020320191008</key>
+	<dict>
+		<key>qId</key>
+		<string>STXDP0101020320191008</string>
+		<key>batchId</key>
+		<string>MMMSW0505040720181010</string>
+		<key>productName</key>
+		<string>我的旺铺</string>
+		<key>merchant</key>
+		<string>深圳买买买</string>
+		<key>date</key>
+		<string>18年10月10日</string>
+	</dict>
+	<key>STXDP1101020120191008</key>
+	<dict>
+		<key>qId</key>
+		<string>STXDP1101020120191008</string>
+		<key>batchId</key>
+		<string>STXDP0101020320191008</string>
+		<key>date</key>
+		<string>2019年10月8日</string>
+		<key>merchant</key>
+		<string>素天下</string>
+		<key>productName</key>
+		<string>百叶豆腐2.5公斤</string>
+	</dict>
+</dict>
+</plist>

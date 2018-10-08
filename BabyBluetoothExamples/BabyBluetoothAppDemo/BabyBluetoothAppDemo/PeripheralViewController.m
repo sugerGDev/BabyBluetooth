@@ -8,6 +8,12 @@
 
 #import "PeripheralViewController.h"
 #import "BabyDefine.h"
+#import "WHC_ModelSqlite.h"
+#import "QueryRecordInfo.h"
+#import "QueryDatabaseMgr.h"
+#import "QueryResultDetailViewController.h"
+#import "QueryHistoryViewController.h"
+
 
 
 #define width [UIScreen mainScreen].bounds.size.width
@@ -15,30 +21,30 @@
 #define channelOnPeropheralView @"peripheralView"
 
 @interface PeripheralViewController ()
- // 保存指定服务和特征
-
-@property(nonatomic, weak) CBService *tSevice;
-@property (nonatomic,weak) CBCharacteristic *tCharacteristic;
-// 需要显示内容
-@property(nonatomic, strong) NSMutableString *content;
-@property(nonatomic, assign) BOOL isLazyShowContent;
-@end
+    // 保存指定服务和特征
+    
+    @property(nonatomic, weak) CBService *tSevice;
+    @property (nonatomic,weak) CBCharacteristic *tCharacteristic;
+    // 需要显示内容
+    @property(nonatomic, strong) NSMutableString *content;
+    @property(nonatomic, assign) BOOL isLazyShowContent;
+    @end
 
 @implementation PeripheralViewController{
-
+    
 }
 -(void)dealloc {
     BabyLog(@">>> PeripheralViewController dealloc ");
     [baby cancelAllPeripheralsConnection];
 }
-
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //初始化
     self.services = [[NSMutableArray alloc]init];
     [self babyDelegate];
-
+    
     //开始扫描设备
     [self performSelector:@selector(loadData) withObject:nil afterDelay:2];
     [SVProgressHUD showInfoWithStatus:@"准备连接设备"];
@@ -49,36 +55,39 @@
     [navRightBtn.titleLabel setTextColor:[UIColor blackColor]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navRightBtn];
     [navRightBtn addTarget:self action:@selector(navRightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-
-//    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerTask) userInfo:nil repeats:YES];
+    
+    //    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerTask) userInfo:nil repeats:YES];
 }
-
+    
 -(void)timerTask{
     //    NSLog(@"timerTask");
-//    [self.currPeripheral readRSSI];
+    //    [self.currPeripheral readRSSI];
 }
-
-//导航右侧按钮点击
+    
+    //导航右侧按钮点击
 -(void)navRightBtnClick:(id)sender{
     NSLog(@"navRightBtnClick");
-//    [self.tableView reloadData];
-//    [self readPlantAssistantData];
+    //    [self.tableView reloadData];
+    //    [self readPlantAssistantData];
     NSArray *peripherals = [baby findConnectedPeripherals];
     NSLog(@"peripherals is :%@",peripherals);
+    
+    QueryHistoryViewController *history = [[QueryHistoryViewController alloc]init];
+    [self.navigationController pushViewController:history animated:YES];
 }
-
-//退出时断开连接
+    
+    //退出时断开连接
 -(void)viewDidDisappear:(BOOL)animated{
     NSLog(@"viewWillDisappear");
 }
-
-
-//babyDelegate
+    
+    
+    //babyDelegate
 -(void)babyDelegate{
     
     __weak typeof(self)weakSelf = self;
     BabyRhythm *rhythm = [[BabyRhythm alloc]init];
-
+    
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral) {
@@ -92,7 +101,7 @@
         NSLog(@"设备：%@--连接失败",peripheral.name);
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
     }];
-
+    
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--断开连接",peripheral.name);
@@ -142,9 +151,9 @@
         NSLog(@"setBlockOnBeatsBreak call");
         
         //如果完成任务，即可停止beat,返回bry可以省去使用weak rhythm的麻烦
-//        if (<#condition#>) {
-//            [bry beatsOver];
-//        }
+        //        if (<#condition#>) {
+        //            [bry beatsOver];
+        //        }
         
     }];
     
@@ -160,11 +169,11 @@
      CBConnectPeripheralOptionNotifyOnDisconnectionKey :当应用挂起时，如果连接断开时，如果我们想要系统为指定的peripheral显示一个断开连接的提示时，就使用这个key值。
      CBConnectPeripheralOptionNotifyOnNotificationKey:
      当应用挂起时，使用该key值表示只要接收到给定peripheral端的通知就显示一个提
-    */
-     NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
-     
+     */
+    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
+    
     [baby setBabyOptionsAtChannel:channelOnPeropheralView scanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:nil discoverWithCharacteristics:nil];
     
 }
@@ -173,8 +182,8 @@
     baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().readValueForCharacteristic().discoverDescriptorsForCharacteristic().readValueForDescriptors().begin();
     //    baby.connectToPeripheral(self.currPeripheral).begin();
 }
-
-
+    
+    
 #pragma mark -插入table数据
 -(void)insertSectionToTableView:(CBService *)service{
     NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
@@ -222,29 +231,29 @@
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
-
+    
     //TODO: 服务和特征存在的情况订阅
     if (self.tSevice && self.tCharacteristic) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-               [self _notifyAction];
+            [self _notifyAction];
         });
     }
 }
-
-
+    
+    
 #pragma mark -Table view data source
-
+    
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return self.services.count;
 }
-
+    
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     PeripheralInfo *info = [self.services objectAtIndex:section];
     return [info.characteristics count];
 }
-
-
+    
+    
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CBCharacteristic *characteristic = [[[self.services objectAtIndex:indexPath.section] characteristics]objectAtIndex:indexPath.row];
     NSString *cellIdentifier = @"characteristicCell";
@@ -253,13 +262,13 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-
+    
     cell.textLabel.text = [NSString stringWithFormat:@"%@",characteristic.UUID];
     cell.detailTextLabel.text = characteristic.description;
     return cell;
 }
-
-
+    
+    
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
     PeripheralInfo *info = [self.services objectAtIndex:section];
@@ -268,13 +277,13 @@
     [title setBackgroundColor:[UIColor darkGrayColor]];
     return title;
 }
-
+    
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50.0f;
-}
-
-
+    {
+        return 50.0f;
+    }
+    
+    
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CharacteristicViewController *vc = [[CharacteristicViewController alloc]init];
@@ -283,7 +292,7 @@
     vc->baby = baby;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+    
 #pragma mark - 订阅 Private
 - (void)_notifyAction {
     
@@ -298,29 +307,33 @@
         
         if(self.tCharacteristic.isNotifying) {
             //如果已经订阅了，则不做处理
-//            [baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
+            //            [baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
             return;
-       
+            
         }else{
-        
+            
             __weak __typeof(self)weakSelf = self;
             [self.currPeripheral setNotifyValue:YES forCharacteristic:self.tCharacteristic];
-           [baby notify:self.currPeripheral
+            [baby notify:self.currPeripheral
           characteristic:self.tCharacteristic
                    block:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
                        NSLog(@"notify block");
                        if (!weakSelf.content) {
                            weakSelf.content = [[NSMutableString alloc]initWithCapacity:10];
                        }
-
+                       
                        [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf];
                        
                        NSString *valueStr = [[NSString alloc] initWithData:characteristics.value encoding:NSUTF8StringEncoding];
                        valueStr = [valueStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-                       [weakSelf.content appendFormat:@"%@",valueStr];
+                       
+                       if (![weakSelf.content isEqualToString:valueStr]) {
+                           // 之前的内容和原来的内容不同的时候
+                           [weakSelf.content appendFormat:@"%@",valueStr];
+                       }
                        
                        [weakSelf performSelector:@selector(_showScanResult:) withObject:weakSelf.content afterDelay:.5f];
-
+                       
                    }];
         }
     }
@@ -329,13 +342,67 @@
         return;
     }
 }
-
-
-- (void)_showScanResult:(NSString *)content {
     
-    [SVProgressHUD showInfoWithStatus:content];
+    
+- (void)_showScanResult:(NSString *)result {
+    
+    [SVProgressHUD showInfoWithStatus:result];
+    [self _saveQueryResult:result];
+    
     self.content = nil;
     self.isLazyShowContent = NO;
 }
- 
-@end
+    
+#pragma mark - 保存到本地
+- (void)_saveQueryResult:(NSString *)result {
+    
+    
+    
+    NSArray *array = [WHCSqlite query:QueryRecordInfo.class where:[NSString stringWithFormat:@"qId = '%@' ",result]];
+    QueryRecordInfo *info = nil;
+    
+    if  (array.count ){
+        
+        info = array.firstObject;
+        // 存在之前扫描的内容，则把内容放到第一位
+        NSMutableArray *all = [WHCSqlite query:QueryRecordInfo.class].mutableCopy;
+        NSInteger rId = [all indexOfObject:array.firstObject];
+        if (rId != NSNotFound) {
+            [all exchangeObjectAtIndex:0 withObjectAtIndex:rId];
+        }
+        [WHCSqlite clear:QueryRecordInfo .class];
+        [WHCSqlite inserts:all];
+        
+        
+    } else {
+        // 在后头插入数据
+        info = [QueryDatabaseMgr.sharedInstance.source objectForKey:result];
+        if (!info) {
+            info = [[QueryRecordInfo alloc]initWithQId:result];
+        }
+        [WHCSqlite insert:info];
+    }
+    
+    
+    
+    if ([self _doCheckVisibleViewControllerWithInfo:info] ){
+        return;
+    }
+    
+    QueryResultDetailViewController *detail = [[QueryResultDetailViewController alloc]init];
+    detail.info = info;
+    [self.navigationController pushViewController:detail animated:YES];
+    
+}
+    
+    - (BOOL)_doCheckVisibleViewControllerWithInfo:(QueryRecordInfo *)info {
+        
+        if (
+            [self.navigationController.visibleViewController isKindOfClass:QueryResultDetailViewController.class] ) {
+            QueryResultDetailViewController *detail = (QueryResultDetailViewController *)self.navigationController.visibleViewController;
+            detail.info = info;
+            return YES;
+        }
+        return NO;
+    }
+    @end

@@ -1,0 +1,30 @@
+PODS:
+  - SQLCipher (3.4.2):
+    - SQLCipher/standard (= 3.4.2)
+  - SQLCipher/common (3.4.2)
+  - SQLCipher/standard (3.4.2):
+    - SQLCipher/common
+  - WHC_ModelSqliteKit/SQLCipher (1.3.0):
+    - SQLCipher
+  - YYKit-fork (1.0.9.3):
+    - YYKit-fork/no-arc (= 1.0.9.3)
+  - YYKit-fork/no-arc (1.0.9.3)
+
+DEPENDENCIES:
+  - WHC_ModelSqliteKit/SQLCipher
+  - YYKit-fork
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SQLCipher
+    - WHC_ModelSqliteKit
+    - YYKit-fork
+
+SPEC CHECKSUMS:
+  SQLCipher: f9fcf29b2e59ced7defc2a2bdd0ebe79b40d4990
+  WHC_ModelSqliteKit: dfafef3ee872dedd9823395291fc80bf37eac46d
+  YYKit-fork: 70c47d7b366a3b1c3e1761eb7edbd700882fd812
+
+PODFILE CHECKSUM: 03e702600df4042f90ff12ff760a47095e89f3ed
+
+COCOAPODS: 1.6.0.beta.1

@@ -1,0 +1,14 @@
+platform :ios,'8.0'
+inhibit_all_warnings!
+
+target 'BabyBluetoothAppDemo' do
+
+#SQLite
+pod 'WHC_ModelSqliteKit/SQLCipher'
+ 
+#Kit
+pod 'YYKit-fork'  #:git => 'https://github.com/ElvisZP/YYKit.git'
+end
+
+
+
