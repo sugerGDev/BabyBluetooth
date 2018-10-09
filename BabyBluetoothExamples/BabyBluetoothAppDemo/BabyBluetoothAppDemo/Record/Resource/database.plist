@@ -6,8 +6,6 @@
 	<dict>
 		<key>qId</key>
 		<string>MMMSW0505040720181010</string>
-		<key>batchId</key>
-		<string>MMMSW0505040720181010</string>
 		<key>productName</key>
 		<string>我的旺铺</string>
 		<key>merchant</key>
@@ -18,8 +16,6 @@
 	<key>STXDP0101020320191008</key>
 	<dict>
 		<key>qId</key>
-		<string>STXDP0101020320191008</string>
-		<key>batchId</key>
 		<string>STXDP0101020320191008</string>
 		<key>date</key>
 		<string>2019年10月8日</string>

@@ -13,7 +13,6 @@
     self = [super init];
     if (self) {
         _qId = qId;
-        _batchId = qId;
     }
     return self;
 }

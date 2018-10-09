@@ -57,7 +57,7 @@
     
 - (void)appendData {
  
-    self.batchTxtField.text = self.info.batchId;
+    self.batchTxtField.text = self.info.qId;
     self.merchantTxtField.text = self.info.merchant;
     self.dateTxtField.text = self.info.date;
     self.productTxtField.text = self.info.productName;
@@ -82,7 +82,6 @@
     
     
     QueryRecordInfo *source = array.firstObject.copy;
-    source.batchId = self.info.batchId;
     source.qId = self.info.qId;
     
     NSString *m = nil;

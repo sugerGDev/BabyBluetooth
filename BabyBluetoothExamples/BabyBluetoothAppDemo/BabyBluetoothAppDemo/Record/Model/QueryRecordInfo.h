@@ -11,10 +11,8 @@
  * 反显查询记录
  */
 @interface QueryRecordInfo : NSObject<NSCopying,WHC_SqliteInfo>
-//查询记录二维码或者条形码
+//查询记录二维码或者条形码 就是批次号
 @property (nonatomic, copy)NSString *qId;
-    // 批次号
-@property(nonatomic, copy) NSString *batchId;
 //日期
 @property(nonatomic, copy) NSString *date;
 // 厂家

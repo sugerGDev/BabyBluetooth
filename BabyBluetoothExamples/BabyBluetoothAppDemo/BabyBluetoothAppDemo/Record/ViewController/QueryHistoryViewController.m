@@ -53,7 +53,7 @@
     
     QueryRecordInfo *info = [self.data objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = info.batchId;
+    cell.textLabel.text = info.qId;
     cell.detailTextLabel.text = info.productName;
 
     return cell;
