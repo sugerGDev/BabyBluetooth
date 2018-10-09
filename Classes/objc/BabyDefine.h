@@ -82,10 +82,6 @@
 
 // 记录上一次链接 peripheral 对象 id
 UIKIT_EXTERN NSString *const kLastConnectionPeripheralUUID;
-// 指定服务对象 id
-UIKIT_EXTERN NSString *const kTargetServiceUUID;
-// 指定特征对象 id
-UIKIT_EXTERN NSString *const kTargetCharacteristicUUID;
 
 
 @interface BabyDefine : NSObject

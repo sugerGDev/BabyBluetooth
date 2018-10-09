@@ -8,6 +8,7 @@
 
 #import "BabyPeripheralManager.h"
 #import "BabyDefine.h"
+#import <YYKit-fork/YYKit.h>
 
 #define callbackBlock(...) if ([[babySpeaker callback] __VA_ARGS__])   [[babySpeaker callback] __VA_ARGS__ ]
 
@@ -124,7 +125,7 @@
     }
     else {
         [addServiceTask setFireDate:[NSDate distantPast]];
-        addServiceTask = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(addServicesToPeripheral) userInfo:nil repeats:NO];
+        addServiceTask = [NSTimer scheduledTimerWithTimeInterval:3 target:[YYWeakProxy proxyWithTarget:self] selector:@selector(addServicesToPeripheral) userInfo:nil repeats:NO];
     }
 }
 

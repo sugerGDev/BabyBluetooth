@@ -8,7 +8,7 @@
 
 #import "BabyRhythm.h"
 #import "BabyDefine.h"
-
+#import <YYKit-fork/YYKit.h>
 @implementation BabyRhythm {
     BOOL isOver;
     BBBeatsBreakBlock blockOnBeatBreak;
@@ -36,7 +36,7 @@
         [self.beatsTimer setFireDate: [[NSDate date]dateByAddingTimeInterval:self.beatsInterval]];
     }
     else {
-       self.beatsTimer = [NSTimer timerWithTimeInterval:self.beatsInterval target:self selector:@selector(beatsBreak) userInfo:nil repeats:YES];
+       self.beatsTimer = [NSTimer timerWithTimeInterval:self.beatsInterval target:[YYWeakProxy proxyWithTarget:self] selector:@selector(beatsBreak) userInfo:nil repeats:YES];
         [self.beatsTimer setFireDate: [[NSDate date]dateByAddingTimeInterval:self.beatsInterval]];
         [[NSRunLoop currentRunLoop] addTimer:self.beatsTimer forMode:NSRunLoopCommonModes];
     }

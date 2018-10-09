@@ -10,7 +10,7 @@
 
 #import "BabyCentralManager.h"
 #import "BabyCallback.h"
-
+#import <YYKit-fork/YYKit.h>
 
 
 @implementation BabyCentralManager
@@ -154,7 +154,7 @@
         if ([currChannel filterOnconnectToPeripherals](peripheral.name,advertisementData,RSSI)) {
             [centralManager connectPeripheral:peripheral options:[currChannel babyOptions].connectPeripheralWithOptions];
             //开一个定时器监控连接超时的情况
-            connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(disconnect:) userInfo:peripheral repeats:NO];
+            connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:[YYWeakProxy proxyWithTarget:self] selector:@selector(disconnect:) userInfo:peripheral repeats:NO];
         }
     }
 }

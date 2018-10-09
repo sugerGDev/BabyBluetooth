@@ -9,7 +9,7 @@
 
 
 #import "BabyBluetooth.h"
-
+#import <YYKit-fork/YYKit.h>
 
 
 @implementation BabyBluetooth{
@@ -417,7 +417,7 @@
         BabyLog(@">>> stop in %d sec",sec);
         
         //听见定时器执行babyStop
-        timerForStop = [NSTimer timerWithTimeInterval:sec target:self selector:@selector(babyStop) userInfo:nil repeats:NO];
+        timerForStop = [NSTimer timerWithTimeInterval:sec target:[YYWeakProxy proxyWithTarget:self] selector:@selector(babyStop) userInfo:nil repeats:NO];
         [timerForStop setFireDate: [[NSDate date]dateByAddingTimeInterval:sec]];
         [[NSRunLoop currentRunLoop] addTimer:timerForStop forMode:NSRunLoopCommonModes];
         
