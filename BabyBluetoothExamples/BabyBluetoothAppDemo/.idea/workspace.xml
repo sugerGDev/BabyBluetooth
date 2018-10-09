@@ -2,26 +2,192 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24848bc3-14fd-4697-b706-f0f09e036994" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnMgr.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnMgr.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/PeripheralViewController.h" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/ViewController/PeripheralViewController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/PeripheralViewController.m" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/ViewController/PeripheralViewController.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/Record/Resource/database.plist" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Record/Resource/database.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.h" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.m" beforeDir="false" afterPath="$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SVProgressHUD/SVProgressHUD.m" beforeDir="false" afterPath="$PROJECT_DIR$/SVProgressHUD/SVProgressHUD.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Classes/objc/BabyBluetooth.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Classes/objc/BabyBluetooth.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Classes/objc/BabyCentralManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Classes/objc/BabyCentralManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Classes/objc/BabyDefine.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Classes/objc/BabyDefine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Classes/objc/BabyDefine.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Classes/objc/BabyDefine.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Classes/objc/BabyPeripheralManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Classes/objc/BabyPeripheralManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Classes/objc/BabyRhythm.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Classes/objc/BabyRhythm.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/SQLCipher/sqlite3.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/WHC_ModelSqliteKit/WHC_ModelSqlite.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/CALayer+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/CALayer+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/MKAnnotationView+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSArray+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSAttributedString+YYText.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSBundle+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSData+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSDate+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSDictionary+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSKeyedUnarchiver+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSNotificationCenter+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSNumber+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSObject+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSObject+YYAddForARC.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSObject+YYAddForKVO.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSObject+YYModel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSParagraphStyle+YYText.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSString+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSThread+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/NSTimer+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIApplication+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIBarButtonItem+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIBezierPath+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIButton+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIColor+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIControl+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIDevice+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIFont+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIGestureRecognizer+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIImage+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIImageView+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIPasteboard+YYText.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIScreen+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIScrollView+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UITableView+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UITextField+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/UIView+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYAnimatedImageView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYAsyncLayer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYCGUtilities.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYClassInfo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYDiskCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYDispatchQueuePool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYFileHash.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYFrameImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYGestureRecognizer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYImageCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYImageCoder.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYKVStorage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYKeychain.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYKit.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYKitMacro.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYLabel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYMemoryCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYReachability.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYSentinel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYSpriteSheetImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextArchiver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextAttribute.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextContainerView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextDebugOption.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextEffectWindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextInput.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextKeyboardManager.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextLayout.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextLine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextMagnifier.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextParser.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextRubyAnnotation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextRunDelegate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextSelectionView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextUtilities.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTextView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYThreadSafeArray.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYThreadSafeDictionary.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTimer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYTransaction.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYWeakProxy.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYWebImageManager.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/YYWebImageOperation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Private/YYKit-fork/_YYWebImageSetter.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/SQLCipher/sqlite3.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/WHC_ModelSqliteKit/WHC_ModelSqlite.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/CALayer+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/CALayer+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/MKAnnotationView+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSArray+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSAttributedString+YYText.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSBundle+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSData+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSDate+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSDictionary+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSKeyedUnarchiver+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSNotificationCenter+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSNumber+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSObject+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSObject+YYAddForARC.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSObject+YYAddForKVO.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSObject+YYModel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSParagraphStyle+YYText.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSString+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSThread+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/NSTimer+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIApplication+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIBarButtonItem+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIBezierPath+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIButton+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIColor+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIControl+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIDevice+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIFont+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIGestureRecognizer+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIImage+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIImageView+YYWebImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIPasteboard+YYText.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIScreen+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIScrollView+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UITableView+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UITextField+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/UIView+YYAdd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYAnimatedImageView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYAsyncLayer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYCGUtilities.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYClassInfo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYDiskCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYDispatchQueuePool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYFileHash.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYFrameImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYGestureRecognizer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYImageCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYImageCoder.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYKVStorage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYKeychain.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYKit.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYKitMacro.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYLabel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYMemoryCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYReachability.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYSentinel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYSpriteSheetImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextArchiver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextAttribute.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextContainerView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextDebugOption.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextEffectWindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextInput.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextKeyboardManager.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextLayout.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextLine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextMagnifier.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextParser.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextRubyAnnotation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextRunDelegate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextSelectionView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextUtilities.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTextView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYThreadSafeArray.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYThreadSafeDictionary.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTimer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYTransaction.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYWeakProxy.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYWebImageManager.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/YYWebImageOperation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Headers/Public/YYKit-fork/_YYWebImageSetter.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo-acknowledgements.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.release.xcconfig" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Developer/Xcode/DerivedData/BabyBluetoothAppDemo-awotwgfehascnrdalgjltkxswued/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,31 +212,31 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Podfile" value="1" />
-          <entry key="Project Settings" value="1" />
-          <entry key="h" value="15" />
-          <entry key="m" value="18" />
+          <entry key="Project Settings" value="2" />
+          <entry key="h" value="20" />
+          <entry key="m" value="22" />
           <entry key="plist" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="ObjectiveC" value="33" />
+          <entry key="ObjectiveC" value="42" />
           <entry key="Podfile" value="1" />
-          <entry key="XcodeWorkspace" value="1" />
+          <entry key="XcodeWorkspace" value="2" />
           <entry key="plist" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Podfile" value="1" />
-          <entry key="h" value="605" />
-          <entry key="m" value="2646" />
+          <entry key="h" value="887" />
+          <entry key="m" value="3019" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Doxygen file" value="12" />
-          <entry key="ObjectiveC" value="3239" />
+          <entry key="Doxygen file" value="14" />
+          <entry key="ObjectiveC" value="3892" />
           <entry key="Podfile" value="1" />
         </counts>
       </usages-collector>
@@ -102,17 +268,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="350">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/ViewController/PeripheralViewController.m">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+            <state relative-caret-position="492">
+              <caret line="280" column="68" selection-start-line="280" selection-start-column="68" selection-end-line="280" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -120,8 +286,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="158" column="8" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="8" />
+            <state relative-caret-position="450">
+              <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -129,8 +313,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+            <state relative-caret-position="288">
+              <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -144,6 +328,12 @@
       <find>PeripheralConnMgr</find>
       <find>isLazyShowContent</find>
       <find>reConnnection</find>
+      <find>PeripheralConfigInfo a</find>
+      <find>FEEA</find>
+      <find>2AA1</find>
+      <find>serviceId</find>
+      <find>PeripheralConfigInfo all</find>
+      <find>PeripheralConnectionInfo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,13 +349,16 @@
         <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Record/Model/QueryRecordInfo.h" />
         <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Record/Model/QueryRecordInfo.m" />
         <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Record/ViewController/QueryResultDetailViewController.h" />
-        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h" />
-        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m" />
         <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnMgr.h" />
         <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnMgr.m" />
-        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h" />
-        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m" />
         <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/ViewController/PeripheralViewController.m" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.m" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.h" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m" />
+        <option value="$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.m" />
       </list>
     </option>
   </component>
@@ -214,7 +407,14 @@
               <item name="BabyBluetoothAppDemo" type="1d218c8b:XcodeProjectNode" />
               <item name="BabyBluetoothDemo" type="fcab9f18:XcodeViewNode" />
               <item name="Peripheral" type="fcab9f18:XcodeViewNode" />
-              <item name="ViewController" type="fcab9f18:XcodeViewNode" />
+              <item name="Category" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="BabyBluetoothAppDemo" type="1d218c8b:XcodeProjectNode" />
+              <item name="BabyBluetoothDemo" type="fcab9f18:XcodeViewNode" />
+              <item name="Peripheral" type="fcab9f18:XcodeViewNode" />
+              <item name="Model" type="fcab9f18:XcodeViewNode" />
             </path>
             <path>
               <item name="" type="efc3779f:XcodeRootNode" />
@@ -231,6 +431,12 @@
             </path>
             <path>
               <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="BabyBluetoothAppDemo" type="1d218c8b:XcodeProjectNode" />
+              <item name="BabyBluetoothDemo" type="fcab9f18:XcodeViewNode" />
+              <item name="Supporting Files" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
               <item name="Pods" type="1d218c8b:XcodeProjectNode" />
             </path>
           </expand>
@@ -241,7 +447,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="BabyBluetoothAppDemo" />
-    <property name="SearchEverywhereHistoryKey" value="hist&#9;null&#9;null&#10;cha&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="PeripheralConnectionInfo&#9;FILE&#9;file:///Users/suger/iCloudDrive/Documents/EgretWing/group/BabyBluetooth/BabyBluetoothExamples/BabyBluetoothAppDemo/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m&#10;hist&#9;null&#9;null&#10;cha&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -259,7 +465,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BabyBluetoothAppDemo">
+  <component name="RunManager">
     <configuration name="BabyBluetoothAppDemo" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BabyBluetoothAppDemo" TARGET_NAME="BabyBluetoothAppDemo" CONFIG_NAME="Debug" SCHEME_NAME="BabyBluetoothAppDemo" IS_LOCATION_SIMULATION_ALLOWED="true" RUN_TARGET_PROJECT_NAME="BabyBluetoothAppDemo" RUN_TARGET_NAME="BabyBluetoothAppDemo" MAKE_ACTIVE="TRUE">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
@@ -268,18 +474,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YYKit-fork" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Pods" TARGET_NAME="YYKit-fork" CONFIG_NAME="Debug" SCHEME_NAME="YYKit-fork" IS_LOCATION_SIMULATION_ALLOWED="true" MAKE_ACTIVE="TRUE">
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.BabyBluetoothAppDemo" />
-      <item itemvalue="Application.YYKit-fork" />
-    </list>
   </component>
   <component name="StructureViewFactory">
     <option name="ACTIVE_ACTIONS" value=",INHERITORS_AND_CATEGORIES" />
@@ -297,12 +491,12 @@
       <workItem from="1538963596942" duration="2449000" />
       <workItem from="1538966550016" duration="1326000" />
       <workItem from="1538967974340" duration="1110000" />
-      <workItem from="1539064273453" duration="4419000" />
+      <workItem from="1539064273453" duration="6224000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9304000" />
+    <option name="totallyTimeSpent" value="11109000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -315,9 +509,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="23" width="1253" height="777" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49244714" visible="true" weight="0.32947975" />
-      <window_info id="Structure" order="1" sideWeight="0.50755286" side_tool="true" visible="true" weight="0.32947975" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49343064" visible="true" weight="0.30966145" />
+      <window_info id="Structure" order="1" sideWeight="0.5065693" side_tool="true" visible="true" weight="0.30966145" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.5007299" side_tool="true" weight="0.24938068" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -328,7 +523,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329927" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.5167883" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.329927" />
@@ -404,9 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="appcode.project-settings://312a8aa1">
-      <provider selected="true" editor-type-id="AppCode.ProjectSettings" />
-    </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreBluetooth.framework/Headers/CBPeripheral.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -425,20 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="28" column="105" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -497,24 +675,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/ViewController/PeripheralViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="107" column="19" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/ViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="280" column="68" selection-start-line="280" selection-start-column="68" selection-end-line="280" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="appcode.project-settings://312a8aa1">
+      <provider selected="true" editor-type-id="AppCode.ProjectSettings" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConfigInfo.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="32" />
+          <folding>
+            <element signature="e#89#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+        <state relative-caret-position="288">
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Model/PeripheralConnectionInfo.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="158" column="8" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="8" />
+        <state relative-caret-position="450">
+          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/ViewController/PeripheralViewController.m">
+    <entry file="file://$PROJECT_DIR$/BabyBluetoothAppDemo/Peripheral/Category/PeripheralConnectionInfo+ScanResult.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+        <state relative-caret-position="269">
+          <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
         </state>
       </provider>
     </entry>

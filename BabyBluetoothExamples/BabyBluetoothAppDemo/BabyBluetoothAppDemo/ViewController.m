@@ -11,6 +11,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "SVProgressHUD.h"
 #import "PeripheralViewController.h"
+#import "YYKit.h"
 
 @interface ViewController (){
     NSMutableArray *peripheralDataArray;
@@ -271,10 +272,12 @@
 - (void)_navPeripheralViewControllerWithPeripheral:(CBPeripheral *)peripheral {
     //停止扫描
     [baby cancelScan];
-    
-    
-    
-    PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc]initWithServiceId:@"FEEA" characteristicId:@"2AA1"];
+
+    NSDictionary *config = PeripheralConfigInfo.scanConfigInfo;
+    NSString *s = [config stringValueForKey:kServiceIdKey default:@""];
+    NSString *c = [config stringValueForKey:kCharacteristicIdKey default:@""];
+
+    PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc]initWithServiceId:s characteristicId:c];
     PeripheralConnectionInfo *connectionInfo = [[PeripheralConnectionInfo alloc]initWithCurrPeripheral:peripheral baby:baby configInfo:configInfo];
     
     PeripheralViewController *vc = [[PeripheralViewController alloc]init];

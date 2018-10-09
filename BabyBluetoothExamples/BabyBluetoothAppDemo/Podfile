@@ -5,7 +5,8 @@ target 'BabyBluetoothAppDemo' do
 
 #SQLite
 pod 'WHC_ModelSqliteKit/SQLCipher'
- 
+#UI
+pod 'QMUIKit'
 #Kit
 pod 'YYKit-fork'  #:git => 'https://github.com/ElvisZP/YYKit.git'
 end

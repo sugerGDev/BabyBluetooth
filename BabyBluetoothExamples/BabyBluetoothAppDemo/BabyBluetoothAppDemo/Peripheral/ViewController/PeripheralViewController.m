@@ -10,15 +10,7 @@
 #import "SVProgressHUD.h"
 #import "PeripheralConnMgr.h"
 #import "YYKit.h"
-
-//#import "BabyDefine.h"
-//#import "WHC_ModelSqlite.h"
-//#import "QueryRecordInfo.h"
-//#import "QueryDatabaseMgr.h"
-//#import "QueryResultDetailViewController.h"
-//#import "QueryHistoryViewController.h"
-//#import "PeripheralConnectionInfo.h"
-
+#import "QueryHistoryViewController.h"
 
 @interface PeripheralViewController ()
 @property(nonatomic, weak) NSMutableArray< PeripheralConnectionInfo *> *connections;
@@ -69,14 +61,10 @@
 //    NSArray *peripherals = [sel findConnectedPeripherals];
 //    NSLog(@"peripherals is :%@",peripherals);
     
-//    QueryHistoryViewController *history = [[QueryHistoryViewController alloc]init];
-//    [self.navigationController pushViewController:history animated:YES];
+    QueryHistoryViewController *history = [[QueryHistoryViewController alloc]init];
+    [self.navigationController pushViewController:history animated:YES];
 }
 
-//退出时断开连接
--(void)viewDidDisappear:(BOOL)animated{
-    NSLog(@"viewWillDisappear");
-}
 
 - (void)appendDeviceConnectionInfo:(PeripheralConnectionInfo *)connectionInfo {
     NSAssert([connectionInfo isKindOfClass:PeripheralConnectionInfo.class], @"添加设备失败，请检查添加对象是否正确");

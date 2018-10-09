@@ -21,6 +21,9 @@
 
 @property(strong, nonatomic, readonly)CBPeripheral *currPeripheral;
 
+
+@property(nonatomic, strong) NSMutableString *scanContent;
+
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCurrPeripheral:(CBPeripheral *)currPeripheral baby:(BabyBluetooth *)baby configInfo:(PeripheralConfigInfo *)configInfo;
 
