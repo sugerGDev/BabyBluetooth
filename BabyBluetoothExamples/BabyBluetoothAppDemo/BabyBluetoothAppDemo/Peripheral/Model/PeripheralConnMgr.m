@@ -33,6 +33,9 @@
 }
 
 - (BOOL)appendPeripheralConnectionInfo:(PeripheralConnectionInfo *)connectionInfo {
+
+    NSAssert([connectionInfo isKindOfClass:PeripheralConnectionInfo .class], @"请检查该链接实体对象");
+
     // 检查该实体是否已经链接过
     BabyBluetooth *babyBluetooth = connectionInfo.baby;
    CBPeripheral *connectionPeripheral =  [babyBluetooth findConnectedPeripheral:connectionInfo.currPeripheral.name];
@@ -48,4 +51,16 @@
 - (NSMutableArray <PeripheralConnectionInfo *> *)count {
     return self.connections;
 }
+
+- (BOOL)removePeripheralConnectionInfo:(PeripheralConnectionInfo *)connectionInfo {
+    
+    NSAssert([connectionInfo isKindOfClass:PeripheralConnectionInfo .class], @"请检查该链接实体对象");
+
+    [connectionInfo cancelConnection];
+    [self.connections removeObject:connectionInfo];
+    
+    return YES;
+ 
+}
+
 @end

@@ -19,6 +19,10 @@
 
 - (void)doScanActionWithData:(NSData *)data {
     
+    if (data == nil) {
+        return;
+    }
+    
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
     if (!self.scanContent) {
@@ -41,9 +45,12 @@
 
 - (void)_showScanResult:(NSString *)result {
 
+    if (result.length == 0) {
+        return;
+    }
+    
     [SVProgressHUD showInfoWithStatus:result];
     [self _saveQueryResult:result];
-
     self.scanContent = nil;
 }
 

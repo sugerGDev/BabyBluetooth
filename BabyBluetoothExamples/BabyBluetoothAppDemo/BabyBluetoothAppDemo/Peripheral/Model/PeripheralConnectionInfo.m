@@ -10,6 +10,7 @@
 #import "BabyBluetooth.h"
 #import "YYKit.h"
 #import "PeripheralConnectionInfo+ScanResult.h"
+#import "PeripheralConnMgr.h"
 
 @interface PeripheralConnectionInfo()
 /**
@@ -31,10 +32,16 @@
 
 
 @property(nonatomic, strong) CBService *tService;
+/*
+ 指定特征
+ */
 @property(nonatomic, strong) CBCharacteristic *tCharacteristic;
 @end
 
 @implementation PeripheralConnectionInfo
+- (void)dealloc {
+    BabyLog(@" >>> PeripheralConnectionInfo dealloc, name is %@ ",self.currPeripheral.name);
+}
 
 - (instancetype)initWithCurrPeripheral:(CBPeripheral *)currPeripheral
                                   baby:(BabyBluetooth *)baby
@@ -71,17 +78,23 @@
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
         //TODO: 保存链接成功的蓝牙设备
         [NSUserDefaults.standardUserDefaults setObject:weakSelf.currPeripheral.identifier.UUIDString forKey:kLastConnectionPeripheralUUID];
+        
+        // TODO: 链接成功后开始订阅
+        [weakSelf performSelector:@selector(_doNotifyAction) withObject:nil afterDelay:2.f];
     }];
     
     //设置设备连接失败的委托
     [self.baby setBlockOnFailToConnectAtChannel:self.connectionInfoId block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--连接失败",peripheral.name);
+        [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
+        
     }];
     
     //设置设备断开连接的委托
     [self.baby setBlockOnDisconnectAtChannel:self.connectionInfoId block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--断开连接",peripheral.name);
+        [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     
@@ -161,6 +174,12 @@
     
 }
 
+- (void)cancelConnection {
+    [self.baby cancelPeripheralConnection:self.currPeripheral];
+    [self.baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
+    
+}
+
 #pragma mark -Private
 - (void)_appendSevice:(CBService *)service {
     //    [self.services addObject:service];
@@ -188,8 +207,7 @@
          ( (self.currPeripheral.state != CBPeripheralStateConnecting ) ||
           (self.currPeripheral.state != CBPeripheralStateConnected) )
          ) {
-        // 开始订阅
-        [self performSelector:@selector(_doNotifyAction) withObject:nil afterDelay:2.f];
+        
         
     }
     
@@ -214,7 +232,7 @@
     if (self.tCharacteristic.properties & CBCharacteristicPropertyNotify ||  self.tCharacteristic.properties & CBCharacteristicPropertyIndicate) {
         
         if(self.tCharacteristic.isNotifying) {
-            //如果已经订阅了，则不做处理
+            //TODO 如果已经订阅了，则不做处理
             //            [baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
             return;
             

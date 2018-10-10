@@ -26,4 +26,12 @@
  * @return 集合对象
  */
 - (NSMutableArray <PeripheralConnectionInfo *>*)count;
+
+/**
+ * 移除指定链接实体
+ * @param connectionInfo 链接实体
+ * @return 是否移除成功，如果移除成功，返回YES
+ */
+- (BOOL)removePeripheralConnectionInfo:(PeripheralConnectionInfo *)connectionInfo;
+
 @end

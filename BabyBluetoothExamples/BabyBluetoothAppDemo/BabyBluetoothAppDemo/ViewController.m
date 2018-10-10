@@ -212,7 +212,6 @@
                        [self _navPeripheralViewControllerWithPeripheral:peripheral];
             });
         }
-    
     }
 }
 
@@ -272,6 +271,19 @@
 - (void)_navPeripheralViewControllerWithPeripheral:(CBPeripheral *)peripheral {
     //停止扫描
     [baby cancelScan];
+    __block NSDictionary *targetItem = nil;
+    
+    [peripheralDataArray enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL * _Nonnull stop) {
+        CBPeripheral *p = [item objectForKey:@"peripheral"];
+        if ([p isEqual:peripheral]) {
+            targetItem = item;
+            *stop = YES;
+        }
+    }];
+    [peripheralDataArray removeObject:targetItem];
+    targetItem = nil;
+    
+    [self.tableView reloadData];
 
     NSDictionary *config = PeripheralConfigInfo.scanConfigInfo;
     NSString *s = [config stringValueForKey:kServiceIdKey default:@""];

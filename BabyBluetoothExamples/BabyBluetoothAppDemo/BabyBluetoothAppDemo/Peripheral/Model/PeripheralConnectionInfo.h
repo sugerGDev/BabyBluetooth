@@ -21,7 +21,6 @@
 
 @property(strong, nonatomic, readonly)CBPeripheral *currPeripheral;
 
-
 @property(nonatomic, strong) NSMutableString *scanContent;
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -32,4 +31,8 @@
  */
 - (void)reConnnection;
 
+/**
+ * 取消链接
+ */
+- (void)cancelConnection;
 @end
