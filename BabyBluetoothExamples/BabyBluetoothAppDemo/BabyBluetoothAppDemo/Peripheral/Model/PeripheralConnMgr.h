@@ -34,4 +34,10 @@
  */
 - (BOOL)removePeripheralConnectionInfo:(PeripheralConnectionInfo *)connectionInfo;
 
+
+/**
+ 获取打印实体对象
+ @return 如果未连接打印机，则返回空
+ */
+- (PeripheralConnectionInfo *)printerConntionInfo;
 @end

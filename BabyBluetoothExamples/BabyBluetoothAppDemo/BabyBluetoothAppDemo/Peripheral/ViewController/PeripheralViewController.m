@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"链接设备";
+    self.title = @"已链接设备";
     self.connections = PeripheralConnMgr.sharedInstance.count;
     
 //    // 指定服务对象 id

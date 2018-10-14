@@ -8,6 +8,7 @@
 
 #import "PeripheralConnMgr.h"
 #import "BabyBluetooth.h"
+#import "CBPeripheral+Equel.h"
 
 @interface PeripheralConnMgr()
 @property(nonatomic, strong) NSMutableArray< PeripheralConnectionInfo *> *connections;
@@ -62,6 +63,18 @@
     
     return YES;
  
+}
+
+- (PeripheralConnectionInfo *)printerConntionInfo {
+    
+   __block PeripheralConnectionInfo *printerConn = nil;
+    [self.connections enumerateObjectsUsingBlock:^(PeripheralConnectionInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ( obj.currPeripheral.isPrinter) {
+            printerConn = obj;
+            *stop = YES;
+        }
+    }];
+    return printerConn;
 }
 
 @end

@@ -17,7 +17,7 @@
     [self getBytes:bytes length:length];
     
     for (int i = 0; i < length; i++){
-        [str appendFormat:@"%02.2hhX", bytes[i]];
+        [str appendFormat:@"%02hhx", bytes[i]];
     }
     free(bytes);
     return str;
@@ -35,7 +35,7 @@
 
 #pragma mark - Public
 - (BOOL)canPrinter {
-  return   [self.toString isEqualToString:self.mapFlags.allKeys.firstObject];
+   return  [self.toString isEqualToString:@"00"];
 }
 
 - (NSString *)tipPrinterStatusStr{

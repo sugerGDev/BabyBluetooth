@@ -9,6 +9,9 @@
 #import "PeripheralConnMgr.h"
 #import "NSData+PrinterStatus.h"
 #import "SVProgressHUD.h"
+#import "PTTestCPCLSlim.h"
+#import "QueryRecordInfo.h"
+
 @implementation PeripheralConnectionInfo (Printer)
 - (void)connectPrinter {
     BabyLog(@" >>> 初始化打印机 ");
@@ -23,12 +26,19 @@
         
 
     });
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//      
-//    });
+
 }
 
-
+- (void)print:(QueryRecordInfo *)info {
+    // 检查蓝牙打印机状态
+    [self _checkPrinterStatus];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.canPrinter) {
+            [self.dispatcher sendData:[PTTestCPCLSlim printerBatchNo:info.qId name:info.productName merchant:info.merchant date:info.date]];
+        }
+    });
+}
 
 - (void)_registerPrinterBlocks {
     
@@ -51,12 +61,14 @@
             return;
         }
         
+        BabyLog(@" >>> printer status is %@", data.tipPrinterStatusStr);
+        
         if (data.canPrinter) {
             self.canPrinter = YES;
-            
+            [SVProgressHUD showInfoWithStatus:@"准备就绪可以打印"];
+    
         }else {
             weakSelf.canPrinter = NO;
-            BabyLog(@" >>> printer status is %@", data.tipPrinterStatusStr);
             [SVProgressHUD showErrorWithStatus:data.tipPrinterStatusStr];
         }
         

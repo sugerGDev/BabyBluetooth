@@ -55,7 +55,7 @@
         [self _startScan];
     });
     
-    //右导航按钮
+    // 右导航按钮
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [navRightBtn setFrame:CGRectMake(0, 0, 30, 30)];
     [navRightBtn setTitle:@"🔍" forState:UIControlStateNormal];

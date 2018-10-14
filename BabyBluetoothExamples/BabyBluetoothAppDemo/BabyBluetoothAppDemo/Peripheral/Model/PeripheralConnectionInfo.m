@@ -211,6 +211,7 @@
 
 - (void)cancelConnection {
     if (self.currPeripheral.isPrinter) {
+        
         [self.dispatcher whenConnectSuccess:nil];
         [self.dispatcher whenReceiveData:nil];
         [self.dispatcher whenConnectFailureWithErrorBlock:nil];
