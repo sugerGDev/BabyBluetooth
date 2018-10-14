@@ -44,6 +44,7 @@
         return NO;
     } else {
         [self.connections addObject:connectionInfo];
+        [connectionInfo connect];
         return YES;
     }
 }

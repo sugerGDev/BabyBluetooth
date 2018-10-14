@@ -13,7 +13,7 @@
 #import "PeripheralConnectionInfo+ScanResult.h"
 #import "PeripheralConnMgr.h"
 #import "PeripheralConnectionInfo+Printer.h"
-
+#import "CBPeripheral+Equel.h"
 @interface PeripheralConnectionInfo()
 /**
  * 配置信息
@@ -64,29 +64,42 @@
         
         self.connectionInfoId = [NSString stringWithFormat:@"%ld",(long)self.hash];
         
-        [self _babyDelegate];
-        
-        [self _doConnectionAction];
+     
     }
     
     return self;
 }
 
+
+
 - (instancetype)initWithCurrPeripheral:(CBPeripheral *)currPeripheral dispatcher:(PTDispatcher *)dispatcher configInfo:(PeripheralConfigInfo *)configInfo {
     self = [super init];
     if (self) {
+        
+        
         _currPeripheral = currPeripheral;
         _configInfo = configInfo;
         _dispatcher = dispatcher;
+        
 
-        // 链接蓝牙打印机
-        [self connectPrinter];
+        NSAssert([_configInfo isKindOfClass:PeripheralConfigInfo .class], @"请配置PeripheralConfigInfo 相关信息");
+        
+  
 
 
     }
     return self;
 }
 
+- (void)connect {
+    if (self.currPeripheral.isPrinter) {
+        // 链接蓝牙打印机
+        [self connectPrinter];
+    }else {
+        [self _babyDelegate];
+        [self _doConnectionAction];
+    }
+}
 
 //babyDelegate
 -(void)_babyDelegate{

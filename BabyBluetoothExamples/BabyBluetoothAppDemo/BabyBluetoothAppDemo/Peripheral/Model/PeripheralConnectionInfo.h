@@ -39,6 +39,8 @@
  */
 - (void)reConnnection;
 
+
+- (void)connect;
 /**
  * 取消链接
  */
