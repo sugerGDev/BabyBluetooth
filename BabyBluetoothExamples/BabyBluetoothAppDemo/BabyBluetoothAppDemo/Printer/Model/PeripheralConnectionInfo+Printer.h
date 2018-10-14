@@ -10,4 +10,6 @@
  */
 @interface PeripheralConnectionInfo (Printer)
 - (void)connectPrinter;
+
+
 @end

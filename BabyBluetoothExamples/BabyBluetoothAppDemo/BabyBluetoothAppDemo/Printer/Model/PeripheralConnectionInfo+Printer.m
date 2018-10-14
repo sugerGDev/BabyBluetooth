@@ -52,8 +52,10 @@
         }
         
         if (data.canPrinter) {
+            self.canPrinter = YES;
             
         }else {
+            weakSelf.canPrinter = NO;
             BabyLog(@" >>> printer status is %@", data.tipPrinterStatusStr);
             [SVProgressHUD showErrorWithStatus:data.tipPrinterStatusStr];
         }
@@ -64,11 +66,13 @@
     
     // 出现连接错误时
     [self.dispatcher whenConnectFailureWithErrorBlock:^(PTBleConnectError error) {
+        weakSelf.canPrinter = NO;
         [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
     }];
     
     //  断开连接回调
     [self.dispatcher whenUnconnect:^(NSNumber *number) {
+         weakSelf.canPrinter = NO;
         [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
     }];
     
@@ -90,7 +94,7 @@
     
     // 接收到打印机打印状态回调
     [self.dispatcher whenUpdatePrintState:^(PTPrintState state) {
-        
+        weakSelf.canPrinter = (state == PTPrintStateSuccess);
     }];
 }
 

@@ -26,7 +26,20 @@
 
 @property(nonatomic, strong, readonly) PeripheralConfigInfo *configInfo;
 
+
+/**
+ 打印机相关参数
+ 打印机实例
+ */
 @property(nonatomic, weak,readonly) PTDispatcher *dispatcher;
+
+/**
+ 打印机相关参数
+ 是否可以打印每次每次在调用打印功能必须检查项
+ */
+@property(nonatomic, assign) BOOL canPrinter;
+
+
 
 
 - (instancetype)init NS_UNAVAILABLE;

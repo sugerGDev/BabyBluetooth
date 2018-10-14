@@ -210,8 +210,21 @@
 }
 
 - (void)cancelConnection {
-    [self.baby cancelPeripheralConnection:self.currPeripheral];
-    [self.baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
+    if (self.currPeripheral.isPrinter) {
+        [self.dispatcher whenConnectSuccess:nil];
+        [self.dispatcher whenReceiveData:nil];
+        [self.dispatcher whenConnectFailureWithErrorBlock:nil];
+        [self.dispatcher whenUnconnect:nil];
+        [self.dispatcher whenSendSuccess:nil];
+        [self.dispatcher whenSendFailure:nil];
+        [self.dispatcher whenSendProgressUpdate:nil];
+        [self.dispatcher whenUpdatePrintState:nil];
+        
+    }
+    else{
+        [self.baby cancelPeripheralConnection:self.currPeripheral];
+        [self.baby cancelNotify:self.currPeripheral characteristic:self.tCharacteristic];
+    }
     
 }
 
