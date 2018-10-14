@@ -3,6 +3,7 @@
 // Copyright (c) 2018 刘彦玮. All rights reserved.
 //
 
+#import <PrinterSDK/PrinterSDK.h>
 #import "PeripheralConfigInfo.h"
 #import "YYKit.h"
 
@@ -28,6 +29,15 @@
         NSAssert( ([_characteristicId isKindOfClass:NSString .class] && _characteristicId.length != 0), @"请配置characteristicId字段，初始化失败");
     }
 
+    return self;
+}
+
+- (instancetype)initWithPrinter:(PTPrinter *)printer {
+    self = [super init];
+    if (self) {
+        NSAssert([printer isKindOfClass:PTPrinter .class], @"init with PTPrinter class");
+        _printer = printer;
+    }
     return self;
 }
 

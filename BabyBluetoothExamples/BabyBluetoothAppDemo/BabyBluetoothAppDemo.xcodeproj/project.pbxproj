@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68B4D026E35419F1A598DA70 /* PeripheralConnectionInfo+Printer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D5C5DD55AF73DF6D7BB9 /* PeripheralConnectionInfo+Printer.m */; };
 		68B4D5FFBA3514D78F7102A0 /* PeripheralConnectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DBB982D4CEB6EB19CABA /* PeripheralConnectionInfo.m */; };
+		68B4D7FEB25FD3F8B5B640A3 /* CBPeripheral+Equel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D9EE7BD30EC857898FC0 /* CBPeripheral+Equel.m */; };
 		68B4D92BAD79616C8876F362 /* PeripheralConnectionInfo+ScanResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D65223E18F0CDDEAC311 /* PeripheralConnectionInfo+ScanResult.m */; };
 		68B4DAC3F4CB7B4F9CD47A5A /* QueryRecordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D995C4DCFB638EA70E41 /* QueryRecordInfo.m */; };
 		68B4DEFEE3D8BFCEC1F1EEBD /* QueryDatabaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D1822BCF23E2D093FFA5 /* QueryDatabaseMgr.m */; };
 		68B4DF1F8CA69A776ACFB032 /* PeripheralConfigInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4D79D52A582C245381398 /* PeripheralConfigInfo.m */; };
 		79CD9BD21CDB7395009DAD1C /* BabyDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CD9BD11CDB7395009DAD1C /* BabyDefine.m */; };
+		9939686E2172D91D00D79A36 /* PrinterSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9939686D2172D91D00D79A36 /* PrinterSDK.framework */; };
 		9B472467216C8B8C007EE133 /* PeripheralConnMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B472466216C8B8C007EE133 /* PeripheralConnMgr.m */; };
 		9B7E45D1216B3105002BDB67 /* QueryResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7E45CF216B3105002BDB67 /* QueryResultDetailViewController.m */; };
 		9B7E45D2216B3105002BDB67 /* QueryResultDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7E45D0216B3105002BDB67 /* QueryResultDetailViewController.xib */; };
@@ -47,16 +50,21 @@
 		68B4D0E4BAC0A2EDFE685FB5 /* PeripheralConnectionInfo+ScanResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PeripheralConnectionInfo+ScanResult.h"; sourceTree = "<group>"; };
 		68B4D1822BCF23E2D093FFA5 /* QueryDatabaseMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryDatabaseMgr.m; sourceTree = "<group>"; };
 		68B4D35D4B368A600AC9C564 /* QueryDatabaseMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryDatabaseMgr.h; sourceTree = "<group>"; };
+		68B4D417D087363E91F7D3AF /* CBPeripheral+Equel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+Equel.h"; sourceTree = "<group>"; };
+		68B4D5C5DD55AF73DF6D7BB9 /* PeripheralConnectionInfo+Printer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PeripheralConnectionInfo+Printer.m"; sourceTree = "<group>"; };
 		68B4D65223E18F0CDDEAC311 /* PeripheralConnectionInfo+ScanResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PeripheralConnectionInfo+ScanResult.m"; sourceTree = "<group>"; };
 		68B4D79D52A582C245381398 /* PeripheralConfigInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralConfigInfo.m; sourceTree = "<group>"; };
+		68B4D8B462BA4FD85DAD39B7 /* PeripheralConnectionInfo+Printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PeripheralConnectionInfo+Printer.h"; sourceTree = "<group>"; };
 		68B4D967E9A17F0DC7ED3817 /* QueryRecordInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryRecordInfo.h; sourceTree = "<group>"; };
 		68B4D995C4DCFB638EA70E41 /* QueryRecordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryRecordInfo.m; sourceTree = "<group>"; };
+		68B4D9EE7BD30EC857898FC0 /* CBPeripheral+Equel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+Equel.m"; sourceTree = "<group>"; };
 		68B4DA19E127E473E053D6F3 /* PeripheralConnectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralConnectionInfo.h; sourceTree = "<group>"; };
 		68B4DBB982D4CEB6EB19CABA /* PeripheralConnectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralConnectionInfo.m; sourceTree = "<group>"; };
 		68B4DE8C910847155846DBE8 /* PeripheralConfigInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralConfigInfo.h; sourceTree = "<group>"; };
 		79CD9BD01CDB7395009DAD1C /* BabyDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyDefine.h; sourceTree = "<group>"; };
 		79CD9BD11CDB7395009DAD1C /* BabyDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyDefine.m; sourceTree = "<group>"; };
 		821E2D88D6E4142A0F7EA7B3 /* libPods-BabyBluetoothAppDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BabyBluetoothAppDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9939686D2172D91D00D79A36 /* PrinterSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PrinterSDK.framework; sourceTree = "<group>"; };
 		9ACFDE8B03C68C39D17C5E91 /* Pods-BabyBluetoothAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBluetoothAppDemo.release.xcconfig"; path = "Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9B472465216C8B8C007EE133 /* PeripheralConnMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeripheralConnMgr.h; sourceTree = "<group>"; };
 		9B472466216C8B8C007EE133 /* PeripheralConnMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeripheralConnMgr.m; sourceTree = "<group>"; };
@@ -111,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9939686E2172D91D00D79A36 /* PrinterSDK.framework in Frameworks */,
 				9BD83551E976F1A585FEB45D /* libPods-BabyBluetoothAppDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +171,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		68B4D8D3B7FECA9275806B46 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				68B4D9EE7BD30EC857898FC0 /* CBPeripheral+Equel.m */,
+				68B4D417D087363E91F7D3AF /* CBPeripheral+Equel.h */,
+				68B4D5C5DD55AF73DF6D7BB9 /* PeripheralConnectionInfo+Printer.m */,
+				68B4D8B462BA4FD85DAD39B7 /* PeripheralConnectionInfo+Printer.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		68B4D9D900EFAACFB260B4A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +191,15 @@
 				68B4D35D4B368A600AC9C564 /* QueryDatabaseMgr.h */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		68B4DA2E95F32B92C753FC13 /* Printer */ = {
+			isa = PBXGroup;
+			children = (
+				68B4DECE34DDBEA2361FEFCD /* SDK */,
+				68B4D8D3B7FECA9275806B46 /* Model */,
+			);
+			path = Printer;
 			sourceTree = "<group>";
 		};
 		68B4DC248AD8D62FFC95DA57 /* Category */ = {
@@ -195,6 +224,14 @@
 				9BBF97F4216AF8EF00BD774C /* database.plist */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		68B4DECE34DDBEA2361FEFCD /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				9939686D2172D91D00D79A36 /* PrinterSDK.framework */,
+			);
+			path = SDK;
 			sourceTree = "<group>";
 		};
 		68B4DF3681DBEB9BB9BB65E1 /* Peripheral */ = {
@@ -261,6 +298,7 @@
 				E1807E701B6CA29100E99C63 /* Supporting Files */,
 				68B4DF672D7542370CBB91BA /* Record */,
 				68B4DF3681DBEB9BB9BB65E1 /* Peripheral */,
+				68B4DA2E95F32B92C753FC13 /* Printer */,
 			);
 			name = BabyBluetoothDemo;
 			path = BabyBluetoothAppDemo;
@@ -477,6 +515,8 @@
 				68B4DF1F8CA69A776ACFB032 /* PeripheralConfigInfo.m in Sources */,
 				68B4D5FFBA3514D78F7102A0 /* PeripheralConnectionInfo.m in Sources */,
 				68B4D92BAD79616C8876F362 /* PeripheralConnectionInfo+ScanResult.m in Sources */,
+				68B4D7FEB25FD3F8B5B640A3 /* CBPeripheral+Equel.m in Sources */,
+				68B4D026E35419F1A598DA70 /* PeripheralConnectionInfo+Printer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +632,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2VEA43BV3V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyBluetoothAppDemo/Printer/SDK",
+				);
 				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = BabyBluetoothAppDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -612,6 +656,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2VEA43BV3V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyBluetoothAppDemo/Printer/SDK",
+				);
 				INFOPLIST_FILE = BabyBluetoothAppDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

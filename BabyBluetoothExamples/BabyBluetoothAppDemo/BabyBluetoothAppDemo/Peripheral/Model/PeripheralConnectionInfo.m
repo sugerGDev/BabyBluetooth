@@ -7,10 +7,12 @@
 #import "SVProgressHUD.h"
 #import "PeripheralConfigInfo.h"
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <PrinterSDK/PrinterSDK.h>
 #import "BabyBluetooth.h"
 #import "YYKit.h"
 #import "PeripheralConnectionInfo+ScanResult.h"
 #import "PeripheralConnMgr.h"
+#import "PeripheralConnectionInfo+Printer.h"
 
 @interface PeripheralConnectionInfo()
 /**
@@ -36,6 +38,11 @@
  指定特征
  */
 @property(nonatomic, strong) CBCharacteristic *tCharacteristic;
+
+
+
+/// ------ 蓝牙打印机相关对象 ------
+@property(nonatomic, weak) PTDispatcher *dispatcher;
 @end
 
 @implementation PeripheralConnectionInfo
@@ -62,6 +69,21 @@
         [self _doConnectionAction];
     }
     
+    return self;
+}
+
+- (instancetype)initWithCurrPeripheral:(CBPeripheral *)currPeripheral dispatcher:(PTDispatcher *)dispatcher configInfo:(PeripheralConfigInfo *)configInfo {
+    self = [super init];
+    if (self) {
+        _currPeripheral = currPeripheral;
+        _configInfo = configInfo;
+        _dispatcher = dispatcher;
+
+        // 链接蓝牙打印机
+        [self connectPrinter];
+
+
+    }
     return self;
 }
 
