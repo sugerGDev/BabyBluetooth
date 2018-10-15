@@ -16,6 +16,7 @@
 #import "BabyToy.h"
 #import "BabySpeaker.h"
 #import "BabyDefine.h"
+#import <PrinterSDK/PrinterSDK.h>
 
 
 
@@ -54,7 +55,6 @@
     //需要自动重连的外设
     NSMutableArray *reConnectPeripherals;
 }
-
 
 
 

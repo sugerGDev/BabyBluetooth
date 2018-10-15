@@ -18,6 +18,7 @@
 		9939686E2172D91D00D79A36 /* PrinterSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9939686D2172D91D00D79A36 /* PrinterSDK.framework */; };
 		99C1EE3D2172FC9900DE9B1C /* NSData+PrinterStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EE3C2172FC9900DE9B1C /* NSData+PrinterStatus.m */; };
 		99C1EE4121730B8F00DE9B1C /* PTTestCPCLSlim.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EE4021730B8F00DE9B1C /* PTTestCPCLSlim.m */; };
+		9B061BE6217474FA0002A694 /* VKMsgSend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B061BE5217474FA0002A694 /* VKMsgSend.m */; };
 		9B472467216C8B8C007EE133 /* PeripheralConnMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B472466216C8B8C007EE133 /* PeripheralConnMgr.m */; };
 		9B7E45D1216B3105002BDB67 /* QueryResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7E45CF216B3105002BDB67 /* QueryResultDetailViewController.m */; };
 		9B7E45D2216B3105002BDB67 /* QueryResultDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7E45D0216B3105002BDB67 /* QueryResultDetailViewController.xib */; };
@@ -72,6 +73,8 @@
 		99C1EE3F21730B8F00DE9B1C /* PTTestCPCLSlim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTTestCPCLSlim.h; sourceTree = "<group>"; };
 		99C1EE4021730B8F00DE9B1C /* PTTestCPCLSlim.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTTestCPCLSlim.m; sourceTree = "<group>"; };
 		9ACFDE8B03C68C39D17C5E91 /* Pods-BabyBluetoothAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBluetoothAppDemo.release.xcconfig"; path = "Target Support Files/Pods-BabyBluetoothAppDemo/Pods-BabyBluetoothAppDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9B061BE4217474FA0002A694 /* VKMsgSend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKMsgSend.h; sourceTree = "<group>"; };
+		9B061BE5217474FA0002A694 /* VKMsgSend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKMsgSend.m; sourceTree = "<group>"; };
 		9B472465216C8B8C007EE133 /* PeripheralConnMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeripheralConnMgr.h; sourceTree = "<group>"; };
 		9B472466216C8B8C007EE133 /* PeripheralConnMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeripheralConnMgr.m; sourceTree = "<group>"; };
 		9B7E45CE216B3105002BDB67 /* QueryResultDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryResultDetailViewController.h; sourceTree = "<group>"; };
@@ -273,6 +276,15 @@
 			path = Template;
 			sourceTree = "<group>";
 		};
+		9B061BE3217474FA0002A694 /* vkMsgSend */ = {
+			isa = PBXGroup;
+			children = (
+				9B061BE4217474FA0002A694 /* VKMsgSend.h */,
+				9B061BE5217474FA0002A694 /* VKMsgSend.m */,
+			);
+			path = vkMsgSend;
+			sourceTree = "<group>";
+		};
 		DB02BA044ABB07DA682E63F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +346,7 @@
 		E1807EA91B6CA53A00E99C63 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				9B061BE3217474FA0002A694 /* vkMsgSend */,
 				E1DEF5051B98857A0005C9F2 /* BabyBluetooth */,
 				F05F7BA71B7372300051C68A /* SVProgressHUD */,
 			);
@@ -514,6 +527,7 @@
 				E1807E791B6CA29100E99C63 /* ViewController.m in Sources */,
 				79CD9BD21CDB7395009DAD1C /* BabyDefine.m in Sources */,
 				F05F7BA61B733A240051C68A /* PeripheralInfo.m in Sources */,
+				9B061BE6217474FA0002A694 /* VKMsgSend.m in Sources */,
 				9B472467216C8B8C007EE133 /* PeripheralConnMgr.m in Sources */,
 				F05F7BAF1B7372300051C68A /* SVProgressHUD.m in Sources */,
 				E1807E761B6CA29100E99C63 /* AppDelegate.m in Sources */,

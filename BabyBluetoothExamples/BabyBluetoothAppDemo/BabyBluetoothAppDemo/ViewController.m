@@ -19,7 +19,7 @@
  * 使用 printer 内搜索
  */
 #ifndef D_USE_PRINTER_SCAN
-#define  D_USE_PRINTER_SCAN 1
+#define  D_USE_PRINTER_SCAN 0
 #endif
 @interface ViewController (){
     NSMutableArray *peripheralDataArray;
@@ -217,18 +217,24 @@
 //插入table数据
 -(void)insertTableView:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
     
+
     NSArray *peripherals = [peripheralDataArray valueForKey:@"peripheral"];
     if(![peripherals containsObject:peripheral]) {
+        
+        BabyLog(@"peripheral is %@  advertisementData is %@  RSSI is %@",peripheral,advertisementData,RSSI);
         
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:peripherals.count inSection:0];
         [indexPaths addObject:indexPath];
         
         NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
-        [item setValue:peripheral forKey:@"peripheral"];
-        [item setValue:RSSI forKey:@"RSSI"];
-        [item setValue:advertisementData forKey:@"advertisementData"];
+        [item setValue:peripheral.copy forKey:@"peripheral"];
+        [item setValue:RSSI.copy forKey:@"RSSI"];
+        [item setValue:advertisementData.copy forKey:@"advertisementData"];
         
+
+            
+#if  D_USE_PRINTER_SCAN
         //TODO:如果是蓝牙打印机，需要保存制定的封装类型
         if (peripheral.isPrinter) {
             BabyLog(@"pt dict is %@",self->ptDictionary);
@@ -239,6 +245,7 @@
             }
            
         }
+#endif
         
         [peripheralDataArray addObject:item];
         
@@ -314,6 +321,7 @@
 - (void)_navPeripheralViewControllerWithPeripheral:(CBPeripheral *)peripheral {
     //停止扫描
     [self _stopScan];
+    
     __block NSDictionary *targetItem = nil;
     
     [peripheralDataArray enumerateObjectsUsingBlock:^(NSDictionary *item, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -323,27 +331,38 @@
             *stop = YES;
         }
     }];
+
+    if (targetItem == nil) {
+        return;
+    }
+    
+    PeripheralConnectionInfo *connectionInfo = nil;
+    {
+        
+        if (peripheral.isPrinter) {
+            
+            NSDictionary *advertisementData = [targetItem objectForKey:@"advertisementData"];
+            NSNumber *RSSI = [targetItem objectForKey:@"RSSI"];
+            
+            PTPrinter *printer = [[PTPrinter alloc]initWithPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI];
+            PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc] initWithPrinter:printer];
+            connectionInfo = [[PeripheralConnectionInfo alloc] initWithCurrPeripheral:peripheral dispatcher:PTDispatcher.share configInfo:configInfo];
+            
+        } else {
+            
+            NSDictionary *config = PeripheralConfigInfo.scanConfigInfo;
+            NSString *s = [config stringValueForKey:kServiceIdKey default:@""];
+            NSString *c = [config stringValueForKey:kCharacteristicIdKey default:@""];
+            
+            PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc]initWithServiceId:s characteristicId:c];
+            connectionInfo = [[PeripheralConnectionInfo alloc]initWithCurrPeripheral:peripheral baby:baby configInfo:configInfo];
+        }
+    }
+    
     [peripheralDataArray removeObject:targetItem];
     targetItem = nil;
-    
     [self.tableView reloadData];
-
-    PeripheralConnectionInfo *connectionInfo = nil;
-
-    if (peripheral.isPrinter) {
-        PTPrinter *printer = [self _findPrinterWithPeripheral:peripheral];
-        PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc] initWithPrinter:printer];
-        connectionInfo = [[PeripheralConnectionInfo alloc] initWithCurrPeripheral:peripheral dispatcher:PTDispatcher.share configInfo:configInfo];
-
-    } else {
-
-        NSDictionary *config = PeripheralConfigInfo.scanConfigInfo;
-        NSString *s = [config stringValueForKey:kServiceIdKey default:@""];
-        NSString *c = [config stringValueForKey:kCharacteristicIdKey default:@""];
-
-        PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc]initWithServiceId:s characteristicId:c];
-        connectionInfo = [[PeripheralConnectionInfo alloc]initWithCurrPeripheral:peripheral baby:baby configInfo:configInfo];
-    }
+    
 
     
     PeripheralViewController *vc = [[PeripheralViewController alloc]init];
@@ -352,6 +371,7 @@
 }
 
 #pragma mark - 蓝牙打印机适配
+#if D_USE_PRINTER_SCAN
 - (PTPrinter *)_findPrinterWithPeripheral:(CBPeripheral *)peripheral {
     __block PTPrinter *target = nil;
     [ptDictionary.allValues enumerateObjectsUsingBlock:^(PTPrinter * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -362,5 +382,6 @@
     }];
     return target;
 }
+#endif
 
 @end

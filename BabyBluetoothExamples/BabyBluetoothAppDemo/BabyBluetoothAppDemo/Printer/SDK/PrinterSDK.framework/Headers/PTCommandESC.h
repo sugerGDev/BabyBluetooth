@@ -58,6 +58,9 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
  */
 @property (nonatomic, assign) NSStringEncoding encoding;
 
+@property(strong,nonatomic,readwrite) NSMutableArray *cmdQueue;
+
+
 - (void)initCommandQueue;
 
 - (void)appendCommandData:(NSData *)cmdData;
@@ -68,13 +71,18 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
 
 - (void)getPaperStatus;
 
+/** 打印自检页
+ *  Print SelfTest
+ */
+- (void)printSelfTest;
+
 /** 打印并走纸一行
  *  Print and feed one line
  */
 - (void)printAndLineFeed;
 
-/** 打印并回到标准模式(页模式)
- *  Print and return to standard mode (page mode)
+/** 打印并回到标准模式
+ *  Print and return to standard mode
  */
 - (void)printAndReturnStandardMode;
 
@@ -141,15 +149,14 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
  */
 - (void)setRightCharacterSpacing:(NSInteger)spacing;
 
-/** page 93. 设置打印模式
- *  Set print mode
+/** page 93. 设置打印字体模式
+ *  Set print font mode
  */
-- (void)setTextMode:(NSInteger)mode;
+- (void)setTextMode:(ESCText)mode;
 /**
  *  page 93. 设置富文本样式，可叠加效果，比如粗体字和下划线
     Set text mode, the effect can be overlapped, like bold and underline
  */
-
 - (void)setTextStyleMini:(BOOL)mini
                     bold:(BOOL)bold
              doubleWidth:(BOOL)doubleWidth
@@ -222,9 +229,9 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
 - (void)setDoubleStrike:(NSInteger)doubleStrike;
 
 /**
- *  page 110. 设置字符字体
- *  Set character font
- *  @param font (0~2),(48~50),(97)
+ *  page 110. 设置字符字体类型
+ *  Set character font type
+ *  @param font (0~1) 0:fontA 1:fontB
  */
 - (void)setCharacterFont:(NSInteger)font;
 
@@ -256,9 +263,44 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
  *  page 121. 设置字符编码表
  *  Set character encoding table
  *
- *  @param table (0~5),(16~19),(255)
+ *  @param table (0~5),(13-21),(26),(32-34)(36,37),(39,40),(45-52)
  */
 - (void)setCharacterCodeTable:(NSInteger)table;
+
+/**
+ 字符变形
+ Character Transform
+ 
+ @param mode 0：close；1：变形，按单词排序 2：变形，按短语排序 3：变形，按完整规则排序
+ */
+- (void)setCharacterTransformMode:(NSInteger)mode;
+
+/** 进入保存模式 */
+- (void)enterPrinterSaveMode;
+
+/** 退出保存模式 */
+- (void)exitPrinterSaveMode;
+
+/** 获取越南语变形模式 00 00：为关 01 00：ASCII输入，02 00：utf-8输入 */
+- (void)getVietnamTransformMode;
+
+/** 设置越南语变形模式,设置后重启打印机 48：为关 49：ASCII输入，50：utf-8输入 */
+- (void)setVietnamTransformMode:(NSInteger)mode;
+
+/**
+ 泰文变形开启
+ 
+ @param status 48：close 49:open
+ */
+- (void)setThaiTransformStatus:(NSInteger)status;
+
+/**
+ language mode
+ 设置简体中文/英文/繁体中文模式
+ 
+ @param mode 0:SimplifiedChinese 1:English 2:TraditionalChinese
+ */
+- (void)setPrinterLanguageMode:(NSInteger)mode;
 
 /** ESC {
  *  page 124. 颠倒打印开关
@@ -303,6 +345,16 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
  */
 - (void)setCharacterSize:(NSInteger)size;
 - (void)setCharacterWidth:(NSInteger)width height:(NSInteger)height;
+
+/**
+ Set character size
+ 选择字符大小
+
+ @param size 0-13  2x2:fontB 3x3:fontA
+ 0:2x2mm,1:3x3mm,2:4x4mm,3:6x6mm,4:8x8mm,5:9x9mm,6:10x10mm
+ 7:12x12mm,8:14x14mm,9:15x15mm,10:16x16mm,11:18x18mm,12:21x21mm,13:24x24mm
+ */
+- (void)setCharacterMultipleSize:(NSInteger)size;
 
 /** GS B
  * page 136. 黑白反向打印模式
@@ -708,7 +760,7 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
 /**
  *  page 288. 传输实时状态
  *  Transmit real-time status
- *  @param status (1~4),(7~8)
+ *  @param status (1~4),(7~8) 一般选2，4
  */
 - (void)transmitRealTimeStatus:(NSInteger)status;
 
@@ -1674,6 +1726,6 @@ typedef NS_ENUM(NSInteger, ESCBarcode) {
  */
 - (void)escPaperLayoutErrorSpecialMarginSettingP:(NSInteger)p SN:(NSInteger)sn;
 
-//- (void)
+
 
 @end

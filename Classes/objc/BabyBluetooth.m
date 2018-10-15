@@ -19,6 +19,9 @@
     int CENTRAL_MANAGER_INIT_WAIT_TIMES;
     NSTimer *timerForStop;
 }
+
+
+
 //单例模式
 + (instancetype)shareBabyBluetooth {
     static BabyBluetooth *share = nil;
@@ -624,7 +627,6 @@ characteristic:(CBCharacteristic *)characteristic
 #pragma mark - peripheral model
 
 //进入外设模式
-
 - (CBPeripheralManager *)peripheralManager {
     return babyPeripheralManager.peripheralManager;
 }

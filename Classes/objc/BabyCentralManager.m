@@ -11,6 +11,7 @@
 #import "BabyCentralManager.h"
 #import "BabyCallback.h"
 #import <YYKit-fork/YYKit.h>
+#import "VKMsgSend.h"
 
 
 @implementation BabyCentralManager
@@ -49,11 +50,14 @@
         connectedPeripherals = [[NSMutableArray alloc]init];
         discoverPeripherals = [[NSMutableArray alloc]init];
         reConnectPeripherals = [[NSMutableArray alloc]init];
+        
+        
+        [PTDispatcher.share configureBleCentralManager:centralManager];
+  
     }
     return  self;
     
 }
-
 
 
 #pragma mark - 接收到通知
@@ -94,6 +98,10 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     
+    NSError *err;
+    [PTDispatcher.share VKCallSelector:@selector(centralManagerDidUpdateState:) error:&err,central];
+    BabyLog(@"err is %@",err);
+    
     //发送通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtCentralManagerDidUpdateState object:@{@"central":central}];
     
@@ -127,11 +135,16 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary *)dict {
+    NSError *err;
+    [PTDispatcher.share VKCallSelector:@selector(centralManager:willRestoreState:) error:&err,central,dict];
+    BabyLog(@"err is %@",err);
     
 }
 
 //扫描到Peripherals
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+    
+
     
     //日志
     //BabyLog(@"当扫描到设备:%@",peripheral.name);
@@ -167,6 +180,10 @@
 //连接到Peripherals-成功
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
+    NSError *err;
+    [PTDispatcher.share VKCallSelector:@selector(centralManager:didConnectPeripheral:) error:&err,central,peripheral];
+    BabyLog(@"err is %@",err);
+    
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral}];
@@ -194,6 +211,13 @@
 
 //连接到Peripherals-失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    
+    
+    NSError *err;
+    [PTDispatcher.share VKCallSelector:@selector(centralManager:didFailToConnectPeripheral:error:) error:&err,central,peripheral,error];
+    BabyLog(@"err is %@",err);
+    
+    
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidFailToConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
@@ -206,6 +230,11 @@
 
 //Peripherals断开连接
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+   
+    NSError *err;
+    [PTDispatcher.share VKCallSelector:@selector(centralManager:didDisconnectPeripheral:error:) error:&err,central,peripheral,error];
+    BabyLog(@"err is %@",err);
+    
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidDisconnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
@@ -236,6 +265,8 @@
     }
 }
 
+
+#pragma mark - CBPeripheralDelegate
 //扫描到服务
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     
