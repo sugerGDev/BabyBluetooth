@@ -19,7 +19,7 @@
  * 使用 printer 内搜索
  */
 #ifndef D_USE_PRINTER_SCAN
-#define  D_USE_PRINTER_SCAN 0
+#define  D_USE_PRINTER_SCAN 1
 #endif
 @interface ViewController (){
     NSMutableArray *peripheralDataArray;
@@ -340,11 +340,18 @@
     {
         
         if (peripheral.isPrinter) {
-            
+            PTPrinter *printer = nil;
+#if !D_USE_PRINTER_SCAN
             NSDictionary *advertisementData = [targetItem objectForKey:@"advertisementData"];
             NSNumber *RSSI = [targetItem objectForKey:@"RSSI"];
             
-            PTPrinter *printer = [[PTPrinter alloc]initWithPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI];
+
+          printer = [[PTPrinter alloc]initWithPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI];
+#else
+            
+            printer =  [self _findPrinterWithPeripheral:peripheral];
+#endif
+            
             PeripheralConfigInfo *configInfo = [[PeripheralConfigInfo alloc] initWithPrinter:printer];
             connectionInfo = [[PeripheralConnectionInfo alloc] initWithCurrPeripheral:peripheral dispatcher:PTDispatcher.share configInfo:configInfo];
             
@@ -370,8 +377,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - 蓝牙打印机适配
 #if D_USE_PRINTER_SCAN
+#pragma mark - 蓝牙打印机适配
 - (PTPrinter *)_findPrinterWithPeripheral:(CBPeripheral *)peripheral {
     __block PTPrinter *target = nil;
     [ptDictionary.allValues enumerateObjectsUsingBlock:^(PTPrinter * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

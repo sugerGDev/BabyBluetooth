@@ -12,16 +12,9 @@
 
 @property(strong,nonatomic,readwrite) NSMutableData * _Nonnull cmdData;
 
-@property (nonatomic, assign) NSStringEncoding encoding;
-
 - (void)appendCommand:(NSString * _Nonnull)cmd;
 
 - (void)appendCommandData:(NSData * _Nonnull)data;
-
-/**
- 打印机自检页 selfTest
- */
-- (void)printSelfInspectionPage;
 
 /**
  获取打印机状态 get printer status.
@@ -53,10 +46,6 @@
 - (void)cpclLineMode;
 - (void)cpclReWindOFF;
 
-/**
- 获取打印机SN号 get printer serial number.
- */
-- (void)cpclGetPrinterSN;
 
 /**
  *   设置纸张类型 Set the paper type
@@ -71,34 +60,12 @@
  */
 - (void)cpclPaperTypeWithType:(NSInteger )type;
 
-
-/**
- Set Label
-
- @param offset The number of units to offset all fields from the left side of the label horizontally. 0-65535
- @param hRes The horizontal resolution of this label, expressed in dots per inch. 100 or 200
- @param vRes The vertical resolution of this label, expressed in dots per inch. 100 or 200
- @param height The height of the label in units. 0-65535
- @param quantity The number of copies of the label to print.  0-1024
- */
 - (void)cpclLabelWithOffset:(NSInteger)offset
                        hRes:(NSInteger)hRes
                        vRes:(NSInteger)vRes
                      height:(NSInteger)height
                    quantity:(NSInteger)quantity;
 
-
-/**
- Barcode
-
- @param type The type of barcode to print.
- @param width The width of a narrow bar.
- @param ratio The ratio of wide to narrow bars. 0-4，20-30
- @param height The height of the barcode.
- @param x The X position where the barcode begins
- @param y The Y position where the barcode begins
- @param barcode The data to be encoded into a barcode
- */
 - (void)cpclBarcode:(NSString * _Nonnull)type
               width:(NSInteger)width
               ratio:(NSInteger)ratio
@@ -107,17 +74,6 @@
                   y:(NSInteger)y
             barcode:(NSString * _Nonnull)barcode;
 
-/**
- VBarcode
- 
- @param type The type of barcode to print.
- @param width The width of a narrow bar.
- @param ratio The ratio of wide to narrow bars.
- @param height The height of the barcode.
- @param x The X position where the barcode begins
- @param y The Y position where the barcode begins
- @param barcode The data to be encoded into a barcode
- */
 - (void)cpclBarcodeVertical:(NSString * _Nonnull)type
                       width:(NSInteger)width
                       ratio:(NSInteger)ratio
@@ -126,77 +82,29 @@
                           y:(NSInteger)y
                     barcode:(NSString * _Nonnull)barcode;
 
-
-/**
- BarcodeQR
-
- @param xPos The X position where the barcode begins
- @param yPos The Y position where the barcode begins
- @param model The ratio of wide to narrow bars:1 or 2
- @param unitWidth Unit-width of the barcode in dots
- */
 - (void)cpclBarcodeQRcodeWithXPos:(NSInteger)xPos
                              yPos:(NSInteger)yPos
                             model:(NSInteger)model
                         unitWidth:(NSInteger)unitWidth;
 
-/**
- VBarcodeQR
- 
- @param xPos The X position where the barcode begins
- @param yPos The Y position where the barcode begins
- @param model The ratio of wide to narrow bars:1 or 2
- @param unitWidth Unit-width of the barcode in dots
- */
 - (void)cpclBarcodeQRcodeVerticalWithXPos:(NSInteger)xPos
                                      yPos:(NSInteger)yPos
                                     model:(NSInteger)model
                                 unitWidth:(NSInteger)unitWidth;
 
-
-/**
- QR Data
-
- @param data Data for barcode
- @param config Configuration options for barcode:MN:N:nunber,MA:Numbers or letters
- */
 - (void)cpclBarcodeQRcodeData:(NSString * _Nonnull)data config:(NSString * _Nonnull)config;
 
-
-/**
- The QR code terminator.
- */
 - (void)cpclBarcodeQRcodeEnd;
 
-
-/**
- BARCODE-TEXT
-
- @param font A font name or number to create the representation
- @param fontSize The size of the font: 0-999
- @param offset How far in units the text is from the barcode:0-999
- */
 - (void)cpclBarcodeTextWithFont:(NSInteger)font
                        fontSize:(NSInteger)fontSize
                          offset:(NSInteger)offset;
 
-
-/**
- BARCODE-TEXT
-
- @param font The filename of the TTF font with extension
- @param xScale The X size of the font, in dots: 0-999
- @param yScale The Y size of the font, in dots: 0-999
- @param offset How far in units the text is from the barcode: 0-999
- */
 - (void)cpclBarcodeTextWithTrueTypeFont:(NSInteger)font
                                  xScale:(NSInteger)xScale
                                  yScale:(NSInteger)yScale
                                  offset:(NSInteger)offset;
 
-/**
- off barcodeText
- */
 - (void)cpclBarcodeTextOff;
 
 /**
@@ -311,7 +219,7 @@
  设置字体加粗
  Set the font bold
  
- @param boldness bold value, 0 is not bold
+ @param boldness 加粗值 0 不加粗 : bold value, 0 is not bold
  */
 - (void)cpclSetBold:(NSInteger)boldness;
 
@@ -344,26 +252,6 @@
                          width:(NSInteger)width
                    lineSpacing:(NSInteger)lineSpacing
                           text:(NSString * _Nonnull)text;
-
-
-/**
- Thai Auto
-
- @param font 0:big font 大字体 1:small font 小字体
- @param fontSize fontSize
- @param x x-coordinate of start point
- @param y y-coordinate of start point
- @param lineSpace Line spacing for automatic line feed 默认值30
- @param width Print width 默认0，若x+width大于页面宽度w的话,width=w-x
- @param text text
- */
-- (void)cpclAutoThaiTextWithFont:(NSInteger)font
-                        fontSize:(NSInteger)fontSize
-                               x:(NSInteger)x
-                               y:(NSInteger)y
-                       lineSpace:(NSInteger)lineSpace
-                           width:(NSInteger)width
-                            text:(NSString * _Nonnull)text;
 
 
 /**
@@ -449,38 +337,12 @@
                          y:(NSInteger)y
                       text:(NSString * _Nonnull)text;
 
-/**
- Set Background
- 
- @param value 0~255,n=0:normal
- */
-- (void)cpclSetBackground:(NSInteger)value;
-
-/**
- set back text
- 
- @param font 1,2,3,4,8,55
- @param fontSize Size identifier for the font
- @param xPos x-coordinate of start point
- @param yPos y-coordinate of start point
- @param text The text data to be  printed
- */
-- (void)cpclBackTextWithFont:(NSInteger)font
-                    fontSize:(NSInteger)fontSize
-                        xPos:(NSInteger)xPos
-                        yPos:(NSInteger)yPos
-                        text:(NSString *_Nonnull)text;
-
 /***************** Line Print Commands *******************/
 
 - (void)cpclLineMargin:(NSInteger)offset;
 - (void)cpclSetPositionWithXPos:(NSInteger)xPos yPos:(NSInteger)yPos;
 - (void)cpclSetPositionWithXPos:(NSInteger)xPos;
 - (void)cpclSetPositionWithYPos:(NSInteger)yPos;
-
-/**
- lineFeed
- */
 - (void)cpclLineFeed;
 - (void)cpclContrast:(NSInteger)value;
 - (void)cpclFeed:(NSInteger)amount;
@@ -492,12 +354,6 @@
 - (void)cpclPreFeed:(NSInteger)amount;
 - (void)cpclReverse:(NSInteger)amount;
 - (void)cpclSetFeed:(NSInteger)length skip:(NSInteger)skip;
-
-/**
-  set the maximum speed
-
- @param value 0-5
- */
 - (void)cpclSpeed:(NSInteger)value;
 
 //Take the paper to the next label
@@ -517,48 +373,4 @@
 - (void)cpclSetLabelPositionWithXPos:(NSInteger)xPos;
 - (void)cpclSetLabelPositionWithYPos:(NSInteger)yPos;
 
-/****************** Codepage Commands ****************/
-/**
- 设置字符代码页
- SetCharacterCodePage
- 
- @param codepage parameter
- eg:
- "USA" "FRANCE" "GERMANY" "UK" "DENMARK" "SWEDEN" "ITALY" "SPAIN" "JAPAN-S" "NORWAY" "DENMARK II" "SPAIN II" "LATIN9" "KOREA" "SLOVENIA" "CHINA" "BIG5" "CP874" "CP850" "CP437" "CP860" "CP863" "CP865" "CP866" "CP852" "CP858" "CP857" "CP737" "CP720" "CP775" "CP855" "CP862" "CP864" "ISO8859-6" "ISO8859-8" "ISO8859-9" "ISO8859-15" "WPC1252" "WPC1250" "WPC1251" "WPC1252" "WPC1254" "WPC1255" "WPC1256" "ISO8859-1" "ISO8859-2" "ISO8859-3" "ISO8859-4" "ISO8859-5" "TIS11" "TIS18"
- */
-- (void)cpclSetCharacterCodePage:(NSString *_Nonnull)codepage;
-
-/**
- 阿拉伯语变形,设置后重启打印机
-
- @param function 48：关闭； 49：变形1，按单词排序；50：变形2，按短语排序；51：变形3，按完整规则排序
- */
-- (void)cpclSetArabicTransformFunction:(NSInteger)function;
-
-/**
- 查询阿拉伯语变形状态，00 00：关闭； 01 00：变形1； 02 00：变形2； 03 00：变形3
- */
-- (void)cpclGetArabicTransformStatus;
-
-/**
- 泰文变形开启
-
- @param status 48：close 49:open
- */
-- (void)cpclSetThaiTransformStatus:(NSInteger)status;
-
-/**
- 越南语变形，设置后重启打印机
-
- @param function 48：关闭； 49：ASCII输入； 50：UTF-8输入
- */
-- (void)cpclSetVietnameseTransformFunction:(NSInteger)function;
-
-/**
- 查询越南语变形状态，00 00：关闭； 01 00：ASCII输入； 02 00：UTF-8输入；
- */
-- (void)cpclGetVietnameseTransformStatus;
-
 @end
-
-

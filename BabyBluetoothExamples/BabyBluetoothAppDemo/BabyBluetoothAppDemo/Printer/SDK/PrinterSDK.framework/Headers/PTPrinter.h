@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, PTBluetoothVender) {
     PTBluetoothVenderMB = 2
 };
 
-@interface PTPrinter : NSObject<NSCoding>
+@interface PTPrinter : NSObject
 
 // Printer's distance calculate by RSSI
 @property(strong,nonatomic,readwrite) NSString *name;
@@ -110,7 +110,5 @@ typedef NS_ENUM(NSInteger, PTBluetoothVender) {
 + (NSNumber *)strengthWithRSSI:(NSNumber *)RSSI;
 
 + (NSString *)hexStringWithData:(NSData *)data;
-
-- (instancetype)initWithPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI;
 
 @end

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "SDKDefine.h"
-#import "PTBitmap.h"
 
 /**
  *  TSC-TSPL 指令集：大约62个生成指令的函数
@@ -17,8 +16,6 @@
 @interface PTCommandTSPL : NSObject
 
 @property(strong,nonatomic,readwrite) NSMutableData *cmdData;
-
-@property (nonatomic, assign) NSStringEncoding encoding;
 
 singletonH(PTCommandTSPL)
 
@@ -30,47 +27,12 @@ singletonH(PTCommandTSPL)
 
 - (void)appendCommand:(NSString *)cmd;
 
-/** 打印并走纸一行
- *  Print and feed one line
- */
-- (void)printAndLineFeed;
-
-
-/**
- set font bold
- 设置字体加粗
-
- @param bold 0：不加粗 1：加粗
- */
-- (void)setFontBold:(NSInteger)bold;
-
-/**
- 自动回传打印机状态
- 开启之后，每打印一张都会返回10个字节的数据，格式：指令头4个字节(aa bb cc dd) + 4个字节的打印张数(从开启到关闭的打印总张数) + 1个字节的状态 + 结束符00
- 
- 会返回两次数据，第一次表示返回可获取打印总张数和状态，第二次表示打印结束
- eg:1.aabbccdd 03000000 2000
-    2.aabbccdd ffffffff 0000 ：打印结束；aabbccdd 00000000 0000：关闭自动回传
- @param status 1：开启自动回传  3：关闭自动回传
- */
-- (void)setPrinterStateAutomaticBackWithStatus:(NSInteger)status;
-
 /**
  *  setting print area size in paper.
- *  打印纸张范围大小 打印纸的毫米
+ *  打印纸张范围大小
  */
 - (void)setPrintAreaSizeWithWidth:(NSInteger)label_width
                            Height:(NSInteger)label_height;
-
-/**
-
- get print status
-
- 返回一个字节
- bit7  bit6  bit5  bit4  bit3  bit2  bit1  bit0
- 高温   开盖  打印中  暂停   丝带   缺纸   卡纸  开盖
- */
-- (void)getPrinterStatus;
 
 /**
  *  setting gap distance during labels.
@@ -109,7 +71,19 @@ singletonH(PTCommandTSPL)
 - (void)printWithSets:(NSInteger)sets  Copies:(NSInteger)copies;
 
 /**
- *  打印文本 暂不可用
+ *  print text.
+ *  打印文本， 已废弃
+ */
+- (void)printTextWithXPos:(NSInteger)x_pos
+                     YPos:(NSInteger)y_pos
+                     Font:(NSString *)font
+                 Rotation:(NSInteger)rotation
+          XMultiplication:(NSInteger)x_multiplication
+          YMultiplication:(NSInteger)y_multiplication
+                     Text:(NSString *)text;
+
+/**
+ *  打印文本
  *  Print text
  *
  *  @param x_pos    x 坐标
@@ -122,25 +96,6 @@ singletonH(PTCommandTSPL)
                       YPos:(NSInteger)y_pos
                   FontSize:(NSInteger)fontSize
                   Rotation:(NSInteger)rotation
-                      Text:(NSString *)text;
-
-/**
- 打印文本
-
- @param x_pos 距离x起点坐标
- @param y_pos 距离y起点坐标
- @param font 字体大小 英文字体：0-8  中文：9
- @param rotation 0 90 180 270
- @param x_multiplication 英文字体：1-10 中文：40-80(大小可调)
- @param y_multiplication 英文字体：1-10 中文：40-80(大小可调)
- @param text 打印的文本
- */
-- (void)appendTextWithXpos:(NSInteger)x_pos
-                      Ypos:(NSInteger)y_pos
-                      Font:(NSInteger)font
-                  Rotation:(NSInteger)rotation
-           Xmultiplication:(NSInteger)x_multiplication
-           Ymultiplication:(NSInteger)y_multiplication
                       Text:(NSString *)text;
 
 /**
@@ -159,22 +114,6 @@ singletonH(PTCommandTSPL)
  *  @param narrow   窄元素 narrow element
  *  @param wide     宽元素 wide element
  */
-
-/**
- print barcode.
- 打印一维条码
- eg:100,100,”39”,96,1,0,2,4,”1000” 、 10,10,”128M”,48,1,0,2,2,”!104!096ABCD!101EFGH”
-
- @param x_pos Specify the x-coordinate of the bar code on the label
- @param y_pos Specify the y-coordinate of the bar code on the label
- @param type bar code type @[128,128M,EAN128,25,25C,39,29S,93,EAN13,EAN13+2,EAN13+5,EAN8,EAN8+5,CODA,POST,UPCA,UPCA+2,UPCA+5,UPCE,UPCE+2,UPCE+5,CPOST,MSI,MSIC,PLESSEY,ITF14,EAN14,11];
- @param height Bar code height (in dots)
- @param readable 是否可读：0，不可读，1，可读 whether it is readable：0: unreadable; 1: readable
- @param rotation rotation：0，90，180，270
- @param narrow 窄元素 narrow element
- @param wide 宽元素 wide element
- @param codeNumber the maximum number of digits of bar code content
- */
 - (void)printBarcodeWithXPos:(NSInteger)x_pos
                         YPos:(NSInteger)y_pos
                         Type:(NSString *)type
@@ -186,20 +125,8 @@ singletonH(PTCommandTSPL)
                   CodeNumber:(NSString *)codeNumber;
 
 /**
- print QRCode
- 打印二维条码
- eg:100,10,L,7,M,0,M1,S1,"ATHE FIRMWARE HAS BEEN UPDATED"
-
- @param x_pos The upper left corner x-coordinate of the QR code
- @param y_pos The upper left corner y-coordinate of the QR code
- @param ecc_level Error correction recovery level
- L :7% M :15% Q : 25% H : 30%
- @param width 1~10
- @param mode A/M  A:Auto M:Manual
- @param rotation 0 、 90 、180 、270
- @param model M1: (default), original version  M2: enhanced version
- @param mask S0~S8, default is S7
- @param text The encodable character set is described as below
+ *  print QRCode
+ *  打印二维条码
  */
 - (void)printQRcodeWithXPos:(NSInteger)x_pos
                        YPos:(NSInteger)y_pos
@@ -224,25 +151,6 @@ singletonH(PTCommandTSPL)
                    height:(NSInteger)height
                      Mode:(NSInteger)mode
                 imageData:(NSData *)imageData;
-
-/**
- Print Bitmap
- 建议使用，取反已经在SDK中处理
-
- @param xpos Specify the x-coordinate
- @param ypos Specify the y-coordinate
- @param mode mode Graphic modes listed below: 0:OVERWRITE 1:OR 2:XOR 3:compress 16:OVERWRITE compress 17:OR compress 18:XOR compress 
- @param image image
- @param bitmapMode binary/dithering
- @param compress TIFF/ZPL2/LZO/None
- @return The data is less than the cache and can be printed NO:The data exceeds the cache and cannot be printed
- */
-- (BOOL)addBitmapWithXPos:(NSInteger)xpos
-                     YPos:(NSInteger)ypos
-                     Mode:(NSInteger)mode
-                    image:(CGImageRef)image
-               bitmapMode:(PTBitmapMode)bitmapMode
-                 compress:(PTBitmapCompressMode)compress;
 
 #pragma mark BasicSetting 基本设定
 
@@ -518,6 +426,8 @@ singletonH(PTCommandTSPL)
                       YStart:(NSInteger)y_start
                       XWidth:(NSInteger)x_width
                      YHeight:(NSInteger)y_height;
+
+- (void)getStatus;
 
 #pragma mark Device Reconfiguration Commands
 

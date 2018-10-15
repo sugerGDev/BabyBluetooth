@@ -38,12 +38,6 @@ typedef NS_ENUM(NSInteger, PTBitmapMode) {
     PTBitmapModeColumn = 2
 };
 
-typedef NS_ENUM(NSInteger, PTBitmapCommand) {
-    
-    PTBitmapCommandTSPL = 0, //当指令为TSPL时
-    PTBitmapCommandOther = 1 //其他指令时
-};
-
 /**
  *  Bitmap processing: generate black and white image or visual grayscale image after dithering
  *  位图处理：生成黑白二值图片或者抖动后的视觉灰度图片
@@ -70,12 +64,6 @@ typedef NS_ENUM(NSInteger, PTBitmapCommand) {
  */
 + (NSData *)getImageData:(CGImageRef)image mode:(PTBitmapMode)mode compress:(PTBitmapCompressMode)compress;
 
-+ (NSData *)getImageData:(CGImageRef)image mode:(PTBitmapMode)mode compress:(PTBitmapCompressMode)compress command:(PTBitmapCommand)command;
-
 + (NSData *)generateColumnData:(CGImageRef)sourceBitmap;
 
 @end
-
-
-
-

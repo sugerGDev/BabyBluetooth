@@ -50,7 +50,6 @@ typedef NS_ENUM(NSInteger, PTBleConnectError) {
 
 typedef void(^PTPrinterParameterBlock)(PTPrinter *printer);
 typedef void(^PTPrinterDictionaryBlock)(NSDictionary<NSString *, PTPrinter *> *printerDic);
-typedef void(^PTPrinterMutableArrayBlock)(NSMutableArray *printerArray);
 typedef void(^PTEmptyParameterBlock)();
 typedef void(^PTBluetoothConnectFailBlock)(PTBleConnectError error);
 typedef void(^PTNumberParameterBlock)(NSNumber *number);
@@ -85,8 +84,6 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
 @property (copy,nonatomic,readwrite) PTPrinterParameterBlock        findBluetoothBlock;
 /** findAllDevice */
 @property (copy,nonatomic,readwrite) PTPrinterDictionaryBlock       findBluetoothAllBlock;
-/** findAllDevice */
-@property (copy,nonatomic,readwrite) PTPrinterMutableArrayBlock     findBTAllBlock;
 /** findAllDevice */
 @property (copy,nonatomic,readwrite) PTPrinterDictionaryBlock       findWiFiAllBlock;
 /** connecte success */
@@ -157,13 +154,6 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
  */
 - (void)whenFindBluetoothAll:(PTPrinterDictionaryBlock)bluetoothAllBlock;
 
-/**
- 获取已发现的所有打印机，每新发现新的打印机或隔三秒调用一次
- Get all the printers found, trigger once when finding new printer or trigger once every 3 seconds
- 
- @param bluetoothBlock 回调Block，参数为打印机数组 trigger Block, parameter is printer dictionary
- */
-- (void)whenFindAllBluetooth:(PTPrinterMutableArrayBlock)bluetoothBlock;
 
 /**
  连接设备更新RSSI回调
@@ -189,6 +179,7 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
  @param connectFailBlock 带连接错误参数的block block with connect error parameter
  */
 - (void)whenConnectFailureWithErrorBlock:(PTBluetoothConnectFailBlock)connectFailBlock;
+
 
 /**
  断开连接回调
@@ -238,8 +229,13 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
  */
 - (void)whenUpdatePrintState:(PTPrintStateBlock)printStateBlock;
 
-/** YES:open  NO:close warning:在AppDelegate中创建中心实例 */
-- (BOOL)getBluetoothStatus;
+/**
+ 获取蓝牙中心蓝牙是否打开,蓝牙中心刚初始化时，状态值默认时未开启的
+ Get the information of whether Bluetooth of center device is ON, when the center device is initializing, its status defaults to OFF.
+
+ @return 蓝牙开启状态
+ */
+- (BOOL)isBluetoothStatePowerOn;
 
 /**
  设置蓝牙连接超时时间
@@ -248,12 +244,6 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
  @param timeout 时间，单位为秒，大于0 : time, unit is second, > 0
  */
 - (void)setupBleConnectTimeout:(double)timeout;
-
-- (void)configureBleCentralManager:(CBCentralManager *)manager;
-
-- (void)registerCentralManagerDelegate;
-
-- (void)unregisterCentralManagerDelegate;
 
 - (NSString *)SDKVersion;
 - (NSString *)SDKBuildTime;

@@ -78,15 +78,6 @@
  */
 + (NSData *)systemGraylevel256Datas:(UIImage *)image;
 
-/**
- 将bitmap数据转成图片
-
- @param bitmap bitmap data
- @param height image height
- @return image
- */
-+ (UIImage *)image:(NSData *)bitmap height:(size_t)height;
-    
 @end
 
 //打印机相关图像处理算法

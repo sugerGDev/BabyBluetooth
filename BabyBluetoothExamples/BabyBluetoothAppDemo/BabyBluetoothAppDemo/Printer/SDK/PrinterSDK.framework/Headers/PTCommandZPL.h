@@ -36,11 +36,6 @@
 singletonH(PTCommandZPL)
 
 #pragma mark - ZPL Commands
-
-- (void)printSelfTest;
-
-- (void)zplLineFeed;
-
 #pragma mark ^A
 
 /**
@@ -1127,12 +1122,7 @@ singletonH(PTCommandZPL)
 //#pragma mark ^SX
 //#pragma mark ^SZ
 //#pragma mark ^TA
-
-#pragma mark ^TB
-
-
-
-
+//#pragma mark ^TB
 #pragma mark ^TO
 
 /**
