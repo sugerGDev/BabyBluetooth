@@ -120,16 +120,18 @@
     
     //设置设备连接失败的委托
     [self.baby setBlockOnFailToConnectAtChannel:self.connectionInfoId block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
+         __strong __typeof(weakSelf)strongSelf = weakSelf;
         NSLog(@"设备：%@--连接失败",peripheral.name);
-        [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
+        [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:strongSelf];
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
         
     }];
     
     //设置设备断开连接的委托
     [self.baby setBlockOnDisconnectAtChannel:self.connectionInfoId block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
         NSLog(@"设备：%@--断开连接",peripheral.name);
-        [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
+        [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:strongSelf];
         [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     

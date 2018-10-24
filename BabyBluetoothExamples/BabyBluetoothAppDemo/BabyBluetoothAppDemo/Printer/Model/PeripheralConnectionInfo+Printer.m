@@ -77,7 +77,7 @@
     
     
     // 出现连接错误时
-    [self.dispatcher whenConnectFailureWithErrorBlock:^(PTBleConnectError error) {
+    [self.dispatcher whenConnectFailureWithErrorBlock:^(PTConnectError error) {
         weakSelf.canPrinter = NO;
         [PeripheralConnMgr.sharedInstance removePeripheralConnectionInfo:weakSelf];
     }];

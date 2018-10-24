@@ -29,33 +29,38 @@ typedef NS_ENUM(NSInteger, PTPrintState) {
     PTPrintStateFailureLidOpen      = 0xcc02,
 };
 
-typedef NS_ENUM(NSInteger, PTBleConnectError) {
+typedef NS_ENUM(NSInteger, PTConnectError) {
     
     //连接超时 Connect timeout
-    PTBleConnectErrorTimeout                  = 0,
+    PTConnectErrorBleTimeout                  = 0,
     //获取服务超时 Disvocer Service timeout
-    PTBleConnectErrorDisvocerServiceTimeout   = 1,
+    PTConnectErrorBleDisvocerServiceTimeout   = 1,
     //验证超时 Validation timeout
-    PTBleConnectErrorValidateTimeout          = 2,
+    PTConnectErrorBleValidateTimeout          = 2,
     //未知设备 Unkown device
-    PTBleConnectErrorUnknownDevice            = 3,
+    PTConnectErrorBleUnknownDevice            = 3,
     //系统错误，由coreBluetooth框架返回
     //System error, returned by coreBluetooth
-    PTBleConnectErrorSystem                   = 4,
+    PTConnectErrorBleSystem                   = 4,
     //验证失败 Validation failure
-    PTBleConnectErrorValidateFail             = 5
+    PTConnectErrorBleValidateFail             = 5,
+    //wifi connect time out
+    PTConnectErrorWifiTimeout                 = 6,
+    //socket error
+    PTConnectErrorWifiSocketError             = 7
 };
 
 @class PTPrinter;
 
 typedef void(^PTPrinterParameterBlock)(PTPrinter *printer);
 typedef void(^PTPrinterDictionaryBlock)(NSDictionary<NSString *, PTPrinter *> *printerDic);
-typedef void(^PTPrinterMutableArrayBlock)(NSMutableArray *printerArray);
+typedef void(^PTPrinterMutableArrayBlock)(NSMutableArray<PTPrinter *> *printerArray);
 typedef void(^PTEmptyParameterBlock)();
-typedef void(^PTBluetoothConnectFailBlock)(PTBleConnectError error);
+typedef void(^PTBluetoothConnectFailBlock)(PTConnectError error);
 typedef void(^PTNumberParameterBlock)(NSNumber *number);
 typedef void(^PTDataParameterBlock)(NSData *data);
 typedef void(^PTPrintStateBlock)(PTPrintState state);
+typedef BOOL(^PTPeripheralFilterBlock)(CBPeripheral *peripheral, NSDictionary<NSString *,id> *advertisementData, NSNumber *RSSI);
 
 /**
  *  主要功能：实现和打印机的 BLE 和 WiFi通讯
@@ -64,7 +69,6 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
 @interface PTDispatcher : NSObject
 
 + (instancetype)share;
-
 /** connected device */
 @property (strong,nonatomic,readwrite) PTPrinter                    *printerConnected;
 
@@ -97,6 +101,8 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
 @property (copy,nonatomic,readwrite) PTNumberParameterBlock         unconnectBlock;
 /** rssi */
 @property (copy,nonatomic,readwrite) PTNumberParameterBlock         readRSSIBlock;
+
+@property (copy,nonatomic,readwrite) PTPeripheralFilterBlock        peripheralFilterBlock;
 
 /**
  发送数据
@@ -249,11 +255,22 @@ typedef void(^PTPrintStateBlock)(PTPrintState state);
  */
 - (void)setupBleConnectTimeout:(double)timeout;
 
-- (void)configureBleCentralManager:(CBCentralManager *)manager;
+/**
+ 设置外设过滤block
 
-- (void)registerCentralManagerDelegate;
+ @param block 过滤block
+ */
+- (void)setupPeripheralFilter:(PTPeripheralFilterBlock)block;
 
-- (void)unregisterCentralManagerDelegate;
+/**
+ 设置SDK中心
+
+ @param manager 中心
+ @param delegate 接收中心代理消息的对象
+ */
+- (void)registerCentralManager:(CBCentralManager *)manager delegate:(id<CBCentralManagerDelegate>)delegate;
+
+- (void)unregisterDelegate;
 
 - (NSString *)SDKVersion;
 - (NSString *)SDKBuildTime;

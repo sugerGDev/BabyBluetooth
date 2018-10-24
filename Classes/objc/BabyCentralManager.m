@@ -52,7 +52,7 @@
         reConnectPeripherals = [[NSMutableArray alloc]init];
         
         
-        [PTDispatcher.share configureBleCentralManager:centralManager];
+        [PTDispatcher.share registerCentralManager:centralManager delegate:self];
   
     }
     return  self;
@@ -98,9 +98,9 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     
-    NSError *err;
-    [PTDispatcher.share VKCallSelector:@selector(centralManagerDidUpdateState:) error:&err,central];
-    BabyLog(@"err is %@",err);
+//    NSError *err;
+//    [PTDispatcher.share VKCallSelector:@selector(centralManagerDidUpdateState:) error:&err,central];
+//    BabyLog(@"err is %@",err);
     
     //发送通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtCentralManagerDidUpdateState object:@{@"central":central}];
@@ -135,9 +135,9 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary *)dict {
-    NSError *err;
-    [PTDispatcher.share VKCallSelector:@selector(centralManager:willRestoreState:) error:&err,central,dict];
-    BabyLog(@"err is %@",err);
+//    NSError *err;
+//    [PTDispatcher.share VKCallSelector:@selector(centralManager:willRestoreState:) error:&err,central,dict];
+//    BabyLog(@"err is %@",err);
     
 }
 
@@ -180,9 +180,9 @@
 //连接到Peripherals-成功
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
-    NSError *err;
-    [PTDispatcher.share VKCallSelector:@selector(centralManager:didConnectPeripheral:) error:&err,central,peripheral];
-    BabyLog(@"err is %@",err);
+//    NSError *err;
+//    [PTDispatcher.share VKCallSelector:@selector(centralManager:didConnectPeripheral:) error:&err,central,peripheral];
+//    BabyLog(@"err is %@",err);
     
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidConnectPeripheral
@@ -213,9 +213,9 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     
-    NSError *err;
-    [PTDispatcher.share VKCallSelector:@selector(centralManager:didFailToConnectPeripheral:error:) error:&err,central,peripheral,error];
-    BabyLog(@"err is %@",err);
+//    NSError *err;
+//    [PTDispatcher.share VKCallSelector:@selector(centralManager:didFailToConnectPeripheral:error:) error:&err,central,peripheral,error];
+//    BabyLog(@"err is %@",err);
     
     
     //发出通知
@@ -231,9 +231,9 @@
 //Peripherals断开连接
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
    
-    NSError *err;
-    [PTDispatcher.share VKCallSelector:@selector(centralManager:didDisconnectPeripheral:error:) error:&err,central,peripheral,error];
-    BabyLog(@"err is %@",err);
+//    NSError *err;
+//    [PTDispatcher.share VKCallSelector:@selector(centralManager:didDisconnectPeripheral:error:) error:&err,central,peripheral,error];
+//    BabyLog(@"err is %@",err);
     
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidDisconnectPeripheral
