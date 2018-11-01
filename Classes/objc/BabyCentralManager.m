@@ -245,7 +245,6 @@
         BabyLog(@">>> didDisconnectPeripheral for %@ with error: %@", peripheral.name, [error localizedDescription]);
     }
     
-    [self deletePeripheral:peripheral];
     if ([currChannel blockOnDisconnect]) {
         [currChannel blockOnDisconnect](central,peripheral,error);
     }
@@ -263,6 +262,8 @@
     if ([reConnectPeripherals containsObject:peripheral]) {
         [self connectToPeripheral:peripheral];
     }
+    
+    [self deletePeripheral:peripheral];
 }
 
 
